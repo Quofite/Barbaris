@@ -1,0 +1,25 @@
+﻿<Window x:Class="GitClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GitClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1288">
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.25*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"></ColumnDefinition>
+            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBox Grid.Row="0" Grid.ColumnSpan="2" Height="54" Width="800" Margin="0 0 0 0" FontSize="24" x:Name="dirTextBox">Рабочая папка</TextBox>
+        <Button Grid.Row="0" Grid.Column="2" Margin="10 30 80 30" FontSize="30" x:Name="openDirBtn" Click="openDirBtn_Click">Открыть папку</Button>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="filesBox" FontSize="20"></TextBlock>
+    </Grid>
+</Window>
