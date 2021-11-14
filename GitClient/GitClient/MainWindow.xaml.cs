@@ -28,25 +28,28 @@ namespace GitClient {
 
             if (Directory.Exists(workingDir)) {
                 if (Directory.Exists(workingDir + @"\.git"))
-                    filesBox.Text += "git initialized \n";
+                    gitStatusBar.Text += "git initialized";
                 else {
                     File.WriteAllText("./gitinitscript.bat",
                         "cd " + workingDir + "\n" +
                         "git init \n"
                     );
                     Process.Start("./gitinitscript.bat");
-                    MessageBox.Show("Git forlder has benn initialized at " + workingDir);
+                    MessageBox.Show("Git folder has been initialized at " + workingDir);
+                    gitStatusBar.Text += "git initialized";
                 }
 
                 string[] dirs = Directory.GetDirectories(workingDir);
                 foreach (string dir in dirs) {
-                    filesTextBox += dir;
+                    string[] splited = dir.Split("\\");
+                    filesTextBox += "\\" + splited[splited.Length - 1];
                     filesTextBox += "\n";
                 }
 
                 string[] files = Directory.GetFiles(workingDir);
                 foreach (string file in files) {
-                    filesTextBox += file;
+                    string[] splited = file.Split("\\");
+                    filesTextBox += splited[splited.Length - 1];
                     filesTextBox += "\n";
                 }
 

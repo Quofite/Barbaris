@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = GitClient
-build_property.ProjectDir = D:\Coding\SimpleWebDev\git-client\GitClient\GitClient\
+build_property.ProjectDir = D:\Coding\SimpleWebDev\GitClient\GitClient\

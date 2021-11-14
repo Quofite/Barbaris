@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Coding\\SimpleWebDev\\git-client\\GitClient\\GitClient\\GitClient.csproj",
+      "projectUniqueName": "D:\\Coding\\SimpleWebDev\\GitClient\\GitClient\\GitClient.csproj",
       "projectName": "GitClient",
-      "projectPath": "D:\\Coding\\SimpleWebDev\\git-client\\GitClient\\GitClient\\GitClient.csproj",
+      "projectPath": "D:\\Coding\\SimpleWebDev\\GitClient\\GitClient\\GitClient.csproj",
       "packagesPath": "C:\\Users\\marga\\.nuget\\packages\\",
-      "outputPath": "D:\\Coding\\SimpleWebDev\\git-client\\GitClient\\GitClient\\obj\\",
+      "outputPath": "D:\\Coding\\SimpleWebDev\\GitClient\\GitClient\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\marga\\AppData\\Roaming\\NuGet\\NuGet.Config",

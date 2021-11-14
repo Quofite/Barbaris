@@ -18,8 +18,11 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="gitStatusBar" FontSize="24"></TextBlock>
         <TextBox Grid.Row="0" Grid.ColumnSpan="2" Height="54" Width="800" Margin="0 0 0 0" FontSize="24" x:Name="dirTextBox">Рабочая папка</TextBox>
         <Button Grid.Row="0" Grid.Column="2" Margin="10 30 80 30" FontSize="30" x:Name="openDirBtn" Click="openDirBtn_Click">Открыть папку</Button>
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="filesBox" FontSize="20"></TextBlock>
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="filesBox" FontSize="20"></TextBlock>
+        </ScrollViewer>
     </Grid>
 </Window>
