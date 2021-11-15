@@ -1,19 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GitClient {
     public partial class MainWindow : Window {
@@ -23,7 +11,8 @@ namespace GitClient {
 
         private void openDirBtn_Click(object sender, RoutedEventArgs e) {
             string workingDir = @dirTextBox.Text;
-            string filesTextBox = string.Empty;
+            gitStatusBar.Text = string.Empty;
+            stackPanel.Children.Clear();
 
 
             if (Directory.Exists(workingDir)) {
@@ -35,8 +24,8 @@ namespace GitClient {
                         "git init \n"
                     );
                     Process.Start("./gitinitscript.bat");
-                    MessageBox.Show("Git folder has been initialized at " + workingDir);
-                    gitStatusBar.Text += "git initialized";
+                    MessageBox.Show("Рабочая директория Git инициализирована в " + workingDir);
+                    gitStatusBar.Text += "Git инициализировн";
                     FileInfo batnik = new FileInfo("./gitinitscript.bat");
                     batnik.Delete();
                 }
@@ -44,19 +33,43 @@ namespace GitClient {
                 string[] dirs = Directory.GetDirectories(workingDir);
                 foreach (string dir in dirs) {
                     string[] splited = dir.Split("\\");
-                    filesTextBox += "\\" + splited[splited.Length - 1];
-                    filesTextBox += "\n";
+                    CheckBox checkbox = new CheckBox { Content = splited[splited.Length - 1], FontSize = 16, Height = 20 };
+                    stackPanel.Children.Add(checkbox);
                 }
 
                 string[] files = Directory.GetFiles(workingDir);
                 foreach (string file in files) {
                     string[] splited = file.Split("\\");
-                    filesTextBox += splited[splited.Length - 1];
-                    filesTextBox += "\n";
+                    CheckBox checkbox = new CheckBox { Content = splited[splited.Length - 1], FontSize = 16, Height = 20 };
+                    stackPanel.Children.Add(checkbox);
                 }
-
-                filesBox.Text += filesTextBox;
             }
+        }
+
+        private void gitAddBtn_Click(object sender, RoutedEventArgs e) {
+            File.WriteAllText("./gitadd.bat", $"cd {dirTextBox.Text} \n" + "git add ."); // пока git add ., потом сделаем с чекбоксами
+            Process.Start("./gitadd.bat");
+            MessageBox.Show("Файлы успешно добавлены в ожидание");
+            FileInfo batnik = new FileInfo("./gitadd.bat");
+            batnik.Delete();
+        }
+
+        private void gitCommitBtn_Click(object sender, RoutedEventArgs e) {
+            File.WriteAllText("./gitcommit.bat", $"cd {dirTextBox.Text} \n" + $"git commit -m \"{comment.Text}\"");
+            Process.Start("./gitcommit.bat");
+            MessageBox.Show("Файлы успешно отправлены в локальный репозиторий Git");
+            FileInfo batnik = new FileInfo("./gitcommit.bat");
+            batnik.Delete();
+        }
+
+        private void comment_GotFocus(object sender, RoutedEventArgs e) {
+            if (comment.Text == "Комментарий")
+                comment.Text = string.Empty;
+        }
+
+        private void comment_LostFocus(object sender, RoutedEventArgs e) {
+            if (string.IsNullOrWhiteSpace(comment.Text))
+                comment.Text = "Комментарий";
         }
     }
 }

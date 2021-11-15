@@ -6,23 +6,25 @@
         xmlns:local="clr-namespace:GitClient"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1288">
-    <Grid ShowGridLines="False">
+    <Grid ShowGridLines="False" Background="#C0C0C0">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.25*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.25*"></ColumnDefinition>
             <ColumnDefinition Width="1.5*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="gitStatusBar" FontSize="24"></TextBlock>
-        <TextBox Grid.Row="0" Grid.ColumnSpan="2" Height="54" Width="800" Margin="0 0 0 0" FontSize="24" x:Name="dirTextBox">Рабочая папка</TextBox>
-        <Button Grid.Row="0" Grid.Column="2" Margin="10 30 80 30" FontSize="30" x:Name="openDirBtn" Click="openDirBtn_Click">Открыть папку</Button>
-        <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="filesBox" FontSize="20"></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" x:Name="gitStatusBar" FontSize="24" Margin="10"></TextBlock>
+        <TextBox Grid.Row="0" Height="54" Width="800" Margin="10 0 0 0" FontSize="24" x:Name="dirTextBox">D:\Coding\test2</TextBox>
+        <Button Grid.Row="0" Grid.Column="1" Margin="10 30 80 30" FontSize="30" x:Name="openDirBtn" Click="openDirBtn_Click">Открыть папку</Button>
+        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackPanel x:Name="stackPanel" Background="#D3D3D3"></StackPanel>
         </ScrollViewer>
+        <Button Grid.Row="2" Grid.Column="1" Width="150" Height="40" FontSize="20" x:Name="gitAddBtn" Click="gitAddBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">добавить</Button>
+        <Button Grid.Row="2" Grid.Column="1" Width="150" Height="40" FontSize="20" x:Name="gitCommitBtn" Click="gitCommitBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170 10">коммит</Button>
+        <TextBox Grid.Row="2" Grid.Column="1" Height="40" Margin="10 60 10 0" x:Name="comment" GotFocus="comment_GotFocus" LostFocus="comment_LostFocus" FontSize="26">Комментарий</TextBox>
     </Grid>
 </Window>
