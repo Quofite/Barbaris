@@ -37,6 +37,8 @@ namespace GitClient {
                     Process.Start("./gitinitscript.bat");
                     MessageBox.Show("Git folder has been initialized at " + workingDir);
                     gitStatusBar.Text += "git initialized";
+                    FileInfo batnik = new FileInfo("./gitinitscript.bat");
+                    batnik.Delete();
                 }
 
                 string[] dirs = Directory.GetDirectories(workingDir);
