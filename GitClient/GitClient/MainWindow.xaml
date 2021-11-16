@@ -25,6 +25,9 @@
         </ScrollViewer>
         <Button Grid.Row="2" Grid.Column="1" Width="150" Height="40" FontSize="20" x:Name="gitAddBtn" Click="gitAddBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">добавить</Button>
         <Button Grid.Row="2" Grid.Column="1" Width="150" Height="40" FontSize="20" x:Name="gitCommitBtn" Click="gitCommitBtn_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170 10">коммит</Button>
-        <TextBox Grid.Row="2" Grid.Column="1" Height="40" Margin="10 60 10 0" x:Name="comment" GotFocus="comment_GotFocus" LostFocus="comment_LostFocus" FontSize="26">Комментарий</TextBox>
+        <Button Grid.Row="2" Grid.Column="1" Width="150" Height="40" FontSize="20" x:Name="gitPushBtn" Click="gitPushBtn_Click" HorizontalAlignment="left" VerticalAlignment="Bottom" Margin="10 10">push</Button>
+        <Button Grid.Row="2" Grid.Column="1" Width="150" Height="40" FontSize="18" x:Name="saveLinkBtn" Click="saveLinkBtn_Click" HorizontalAlignment="left" VerticalAlignment="Bottom" Margin="170 10">сохранить ссылку</Button>
+        <TextBox Grid.Row="2" Grid.Column="0" Height="40" Margin="10 60 10 0" x:Name="comment" GotFocus="comment_GotFocus" LostFocus="comment_LostFocus" FontSize="26">Комментарий</TextBox>
+        <TextBox Grid.Row="2" Grid.Column="0" Height="40" Margin="10" x:Name="gitLink" GotFocus="gitLink_GotFocus" LostFocus="gitLink_LostFocus" FontSize="26" VerticalAlignment="Top">Ссылка на удаленный репозиторий</TextBox>
     </Grid>
 </Window>
