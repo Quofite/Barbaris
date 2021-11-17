@@ -2,12 +2,13 @@
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace GitClient {
-    class JsonLink {
+
+    // модель json файла с ссылкой на gh
+    public class JsonLink {
         public string Link { get; set; }
     }
 
@@ -16,36 +17,41 @@ namespace GitClient {
             InitializeComponent();
         }
 
+        // получение ссылки на git репозиторий из json
         private async Task setInJson(string workingDir, string gitlink) {
             using (FileStream fs = new FileStream("gitlink.json", FileMode.OpenOrCreate)) {
                 JsonLink link = new JsonLink() { Link = gitlink };
                 await JsonSerializer.SerializeAsync<JsonLink>(fs, link);
-                Thread.Sleep(5000);
-                File.Move("./gitlink.json", dirTextBox.Text + @"\gitlink.json");
             }
+            File.Move("./gitlink.json", dirTextBox.Text + @"/gitlink.json");
         }
 
-        private async Task<string> getFromJson(string workingDir) {
-            using (FileStream fs = new FileStream(workingDir + "gitlink.json", FileMode.OpenOrCreate)) {
+        private async Task getFromJson(string workingDir) {
+            using (FileStream fs = new FileStream(workingDir + @"\gitlink.json", FileMode.OpenOrCreate)) {
                 JsonLink link = await JsonSerializer.DeserializeAsync<JsonLink>(fs);
-                return link.Link;
+                gitLink.Text = link.Link;
             }
         }
 
+        // обработчики событий кнопок
+        // открытие директории
         private void openDirBtn_Click(object sender, RoutedEventArgs e) {
-            string workingDir = @dirTextBox.Text;
-            gitStatusBar.Text = string.Empty;
-            stackPanel.Children.Clear();
+            string workingDir = @dirTextBox.Text;   // получение пути
+            gitStatusBar.Text = string.Empty;       // отчистка поля состояния гита
+            stackPanel.Children.Clear();            // отчистка stack panel
 
-
+            // если директоирия существует
             if (Directory.Exists(workingDir)) {
+                // если есть папка гита
                 if (Directory.Exists(workingDir + @"\.git")) {
+                    // установка сообщения об инициализации гита
                     gitStatusBar.Text += "git initialized";
 
+                    // если есть ссылка на гитхаб, то получаем
                     if (File.Exists(workingDir + @"\gitlink.json"))
-                        gitLink.Text = getFromJson(workingDir).ToString();
+                        getFromJson(workingDir);
                 }
-                else {
+                else {  // в противном случае создаем git init
                     File.WriteAllText("./gitinitscript.bat",
                         "cd " + workingDir + "\n" +
                         "git init \n"
@@ -57,6 +63,7 @@ namespace GitClient {
                     batnik.Delete();
                 }
 
+                // получение всех папок из рабочей директории
                 string[] dirs = Directory.GetDirectories(workingDir);
                 foreach (string dir in dirs) {
                     string[] splited = dir.Split("\\");
@@ -64,6 +71,7 @@ namespace GitClient {
                     stackPanel.Children.Add(checkbox);
                 }
 
+                // получение файлов из директории
                 string[] files = Directory.GetFiles(workingDir);
                 foreach (string file in files) {
                     string[] splited = file.Split("\\");
@@ -73,6 +81,7 @@ namespace GitClient {
             }
         }
 
+        // git add
         private void gitAddBtn_Click(object sender, RoutedEventArgs e) {
             File.WriteAllText("./gitadd.bat", $"cd {dirTextBox.Text} \n" + "git add ."); // пока git add ., потом сделаем с чекбоксами
             Process.Start("./gitadd.bat");
@@ -81,6 +90,7 @@ namespace GitClient {
             batnik.Delete();
         }
 
+        // git commit
         private void gitCommitBtn_Click(object sender, RoutedEventArgs e) {
             File.WriteAllText("./gitcommit.bat", $"cd {dirTextBox.Text} \n" + $"git commit -m \"{comment.Text}\"");
             Process.Start("./gitcommit.bat");
@@ -89,7 +99,7 @@ namespace GitClient {
             batnik.Delete();
         }
 
-
+        // git push
         private void gitPushBtn_Click(object sender, RoutedEventArgs e) {
             if (gitLink.Text == string.Empty) {
                 MessageBox.Show("Нет ссылки на репозиторий");
@@ -103,9 +113,9 @@ namespace GitClient {
             batnik.Delete();
         }
 
-
+        // сохранение ссылки на гитхаб
         private void saveLinkBtn_Click(object sender, RoutedEventArgs e) {
-            setInJson(dirTextBox.Text, gitLink.Text);            
+            setInJson(dirTextBox.Text, gitLink.Text);
         }
 
 
