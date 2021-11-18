@@ -4,6 +4,12 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <Win32Resource />
+    <Authors>Gleb Nikitin</Authors>
+    <Company>Bruh inc.</Company>
+    <Description>Graphic client for Git and Github</Description>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
 </Project>

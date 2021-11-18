@@ -18,7 +18,7 @@ namespace GitClient {
         }
 
         // получение ссылки на git репозиторий из json
-        private async Task setInJson(string workingDir, string gitlink) {
+        private async Task SetInJson(string workingDir, string gitlink) {
             using (FileStream fs = new FileStream("gitlink.json", FileMode.OpenOrCreate)) {
                 JsonLink link = new JsonLink() { Link = gitlink };
                 await JsonSerializer.SerializeAsync<JsonLink>(fs, link);
@@ -26,19 +26,50 @@ namespace GitClient {
             File.Move("./gitlink.json", dirTextBox.Text + @"/gitlink.json");
         }
 
-        private async Task getFromJson(string workingDir) {
+        private async Task GetFromJson(string workingDir) {
             using (FileStream fs = new FileStream(workingDir + @"\gitlink.json", FileMode.OpenOrCreate)) {
                 JsonLink link = await JsonSerializer.DeserializeAsync<JsonLink>(fs);
                 gitLink.Text = link.Link;
             }
         }
 
+        // получение папок и файлов в них
+        private void GetDirs(string workingDir, int marginLeft) {
+            string[] dirs = Directory.GetDirectories(workingDir);
+            foreach (string dir in dirs) {
+                string[] splited = dir.Split("\\");
+                string sp = splited[^1];
+
+                if (sp != ".git" && sp != "node_modules" && sp != "bin" && sp != "obj") {
+                    CheckBox checkbox = new CheckBox { Content = sp, FontSize = 16, Height = 20, Margin = new Thickness(marginLeft, 10, 0, 0) };
+                    stackPanel.Children.Add(checkbox);
+
+                    GetDirs(dir, marginLeft + 30);
+                    GetFiles(dir, marginLeft + 30);
+                }
+                else if (sp != ".git") {
+                    CheckBox checkbox = new CheckBox { Content = sp, FontSize = 16, Height = 20, Margin = new Thickness(marginLeft, 10, 0, 0) };
+                    stackPanel.Children.Add(checkbox);
+                }
+            }
+        }
+
+        private void GetFiles(string workingDir, int marginLeft) {
+            string[] files = Directory.GetFiles(workingDir);
+            foreach (string file in files) {
+                string[] splited = file.Split("\\");
+                CheckBox checkbox = new CheckBox { Content = splited[^1], FontSize = 16, Height = 20, Margin = new Thickness(marginLeft, 10, 0, 0) };
+                stackPanel.Children.Add(checkbox);
+            }
+        }
+
         // обработчики событий кнопок
         // открытие директории
         private void openDirBtn_Click(object sender, RoutedEventArgs e) {
-            string workingDir = @dirTextBox.Text;   // получение пути
-            gitStatusBar.Text = string.Empty;       // отчистка поля состояния гита
-            stackPanel.Children.Clear();            // отчистка stack panel
+            string workingDir = @dirTextBox.Text;                   // получение пути
+            gitLink.Text = "Ссылка на удаленный репозиторий";       // отчистка ссылки на гитхаб
+            gitStatusBar.Text = string.Empty;                       // отчистка строки состояния гита
+            stackPanel.Children.Clear();                            // отчистка stack panel
 
             // если директоирия существует
             if (Directory.Exists(workingDir)) {
@@ -49,7 +80,7 @@ namespace GitClient {
 
                     // если есть ссылка на гитхаб, то получаем
                     if (File.Exists(workingDir + @"\gitlink.json"))
-                        getFromJson(workingDir);
+                        GetFromJson(workingDir);
                 }
                 else {  // в противном случае создаем git init
                     File.WriteAllText("./gitinitscript.bat",
@@ -58,26 +89,13 @@ namespace GitClient {
                     );
                     Process.Start("./gitinitscript.bat");
                     MessageBox.Show("Рабочая директория Git инициализирована в " + workingDir);
-                    gitStatusBar.Text += "Git инициализировн";
+                    gitStatusBar.Text = "Git инициализировн";
                     FileInfo batnik = new FileInfo("./gitinitscript.bat");
                     batnik.Delete();
                 }
 
-                // получение всех папок из рабочей директории
-                string[] dirs = Directory.GetDirectories(workingDir);
-                foreach (string dir in dirs) {
-                    string[] splited = dir.Split("\\");
-                    CheckBox checkbox = new CheckBox { Content = splited[splited.Length - 1], FontSize = 16, Height = 20, Margin = new Thickness(10, 10, 0, 0) };
-                    stackPanel.Children.Add(checkbox);
-                }
-
-                // получение файлов из директории
-                string[] files = Directory.GetFiles(workingDir);
-                foreach (string file in files) {
-                    string[] splited = file.Split("\\");
-                    CheckBox checkbox = new CheckBox { Content = splited[splited.Length - 1], FontSize = 16, Height = 20, Margin = new Thickness(10, 10, 0, 0) };
-                    stackPanel.Children.Add(checkbox);
-                }
+                GetDirs(workingDir, 10);
+                GetFiles(workingDir, 10);
             }
         }
 
@@ -115,7 +133,7 @@ namespace GitClient {
 
         // сохранение ссылки на гитхаб
         private void saveLinkBtn_Click(object sender, RoutedEventArgs e) {
-            setInJson(dirTextBox.Text, gitLink.Text);
+            SetInJson(dirTextBox.Text, gitLink.Text);
         }
 
 
