@@ -20,4 +20,6 @@ module.exports.responseQuery = function(connect, sql, filter, callback, HttpResp
         if (err) throw err;
         HttpResponse.send(callback(results));
     });
+
+    connection.end();
 }
