@@ -2,18 +2,18 @@ const express = require("express");     // получение express.js
 const app = express();                  // создание объекта приложения     
 const bsql = require("./bettersql");    // получение bettersql.js
 
+
+
 // создание объекта подключения
-const connect = {
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "messager"
-};
+const connect = bsql.createConnectionObject("localhost", "root", "", "messager"); // хост, имя пользователя, пароль, имя БД
+
 // sql запрос
 var sql = `SELECT * FROM messages`;
-filter = []
+filter = [] // <-- можно не создавать как отдельный объект, если не нужен; просто в параметры вместо filter написать []
+
 
 // ------------------------------------------- basic --------------------------
+
 
 // колбэк
 function callback(results){
@@ -22,7 +22,9 @@ function callback(results){
 
 bsql.basicQuery(connect, sql, filter, callback);
 
+
 // ------------------------------------------- http-response ------------------
+
 
 function callback2(results){
     var result = ""
@@ -38,6 +40,8 @@ app.get("/", function(request, response){
     bsql.responseQuery(connect, sql, filter, callback2, response);
 });
 
+
 // ----- прослушивание порта
+
 
 app.listen(3000, () => { console.log("listening") });
