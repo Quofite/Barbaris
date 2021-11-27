@@ -3,18 +3,19 @@ package com.launcher.launcher;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.json.simple.JSONObject;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class LauncherApplication extends Application {
+    public JSONObject jsonObject = new JSONObject();
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        HelloController hc = new HelloController();
+        FXMLLoader fxmlLoader = new FXMLLoader(LauncherApplication.class.getResource("main-view.fxml"));
+        LauncherController hc = new LauncherController();
         hc.SetPrimStage(stage);
-
 
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         stage.setTitle("Hello!");
