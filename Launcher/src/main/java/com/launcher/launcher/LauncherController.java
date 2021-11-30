@@ -2,21 +2,17 @@ package com.launcher.launcher;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
-import java.io.IOException;
 
 public class LauncherController {
 
     @FXML
-    private TextArea textArea;
+    private VBox projpane;
 
     private Stage primStage;
 
@@ -25,30 +21,35 @@ public class LauncherController {
     }
 
     @FXML
-    public void addProject(ActionEvent actionEvent) throws IOException {
+    public void addProject(ActionEvent actionEvent) {
         final DirectoryChooser directoryChooser = new DirectoryChooser();
         File dir = directoryChooser.showDialog(primStage);
-        final String[] name = {""};
 
-        FXMLLoader loader = new FXMLLoader(LauncherApplication.class.getResource("name-dialog.fxml"));
-        Stage dialogStage = new Stage();
-        dialogStage.initOwner(primStage);
-        dialogStage.setTitle("Введите название");
+        MemoryUtils.addProjectsInMem(dir.getName(), dir.getAbsolutePath());
+    }
 
-        Button btn = new Button("OK");
-        AnchorPane.setBottomAnchor(btn, 10.0);
-        AnchorPane.setLeftAnchor(btn, 250.0);
-        AnchorPane.setTopAnchor(btn, 163.0);
+    @FXML
+    public void loadProjects(ActionEvent e) {
+        projpane.getChildren().clear();
 
-        btn.setOnAction((ActionEvent e) -> {
-            name[0] = textArea.getText();
-        });
+        String projects = MemoryUtils.getProjectsFormMem();
+        String[] duals = projects.split(";");
+        Button[] btns = new Button[duals.length - 1];
+        for (int i = 0; i < duals.length - 1; i++) {
+            String[] splited = duals[i].split(",");
+            String result = splited[0] + " (" + splited[1] + ")";
 
-        Scene scene = new Scene(loader.load(), 320, 200);
-        dialogStage.setScene(scene);
-        dialogStage.show();
+            Button btn = new Button(result);
+            btn.setPrefSize(410.0, 80.0);
+            btn.setFont(new Font("Arial", 18));
 
-        MemoryUtils.addProjectsMem(name[0], dir.getAbsolutePath());
+            btns[i] = btn;
+        }
+
+        for (Button btn : btns) {
+
+            projpane.getChildren().add(btn);
+        }
     }
 
 }
