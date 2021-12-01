@@ -1,5 +1,8 @@
 package com.launcher.launcher;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
 import java.io.*;
 
 public class MemoryUtils {
@@ -23,7 +26,14 @@ public class MemoryUtils {
                 result.append((char) c);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ошибка");
+            alert.setHeaderText("Ошибка");
+            alert.setContentText("Нечего выводить - добавте проект");
+            alert.showAndWait().ifPresent(rs -> {
+                if (rs == ButtonType.OK)
+                    alert.close();
+            });
         }
 
         return result.toString();
