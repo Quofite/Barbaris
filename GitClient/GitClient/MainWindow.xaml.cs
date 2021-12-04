@@ -211,5 +211,15 @@ namespace GitClient {
             if (string.IsNullOrWhiteSpace(gitLink.Text))
                 gitLink.Text = "Ссылка на удаленный репозиторий";
         }
+
+        private void dirTextBox_GotFocus(object sender, RoutedEventArgs e) {
+            if (dirTextBox.Text == "Путь до рабочей директории")
+                dirTextBox.Text = string.Empty;
+        }
+
+        private void dirTextBox_LostFocus(object sender, RoutedEventArgs e) {
+            if (string.IsNullOrWhiteSpace(dirTextBox.Text))
+                dirTextBox.Text = "Путь до рабочей директории";
+        }
     }
 }

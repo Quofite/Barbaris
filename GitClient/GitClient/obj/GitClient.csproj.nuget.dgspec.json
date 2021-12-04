@@ -13,8 +13,12 @@
         "packagesPath": "C:\\Users\\marga\\.nuget\\packages\\",
         "outputPath": "D:\\Coding\\SimpleWebDev\\GitClient\\GitClient\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\CodingUtilities\\Visual Studio SDK\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\marga\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
