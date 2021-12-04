@@ -9,13 +9,13 @@ import {
 
 var links = {
     "stable": [
-        { key: "windows",  icon: "windows", value: "ссылка", text: "Windows" },
-        { key: "linux",  icon: "linux", value: "ссылка", text: "Linux" },
+        { platform: "windows",  icon: "windows", value: "https://pornhub.com", text: "Windows" },
+        { platform: "linux",  icon: "linux", value: "ссылка", text: "Linux" },
     ],
 
     "beta": [
-        { key: "windows", icon: "windows", value: "ссылка", text: "Windows" },
-        { key: "linux", icon: "linux", value: "ссылка", text: "Linux" },
+        { platform: "windows", icon: "windows", value: "https://airbus.com", text: "Windows" },
+        { platform: "linux", icon: "linux", value: "ссылка", text: "Linux" },
     ],
 }
 
@@ -31,10 +31,20 @@ const DownloadPage = () => (
                     
                     <p style={{ fontSize: '1.33em' }}>Current version: 1.0</p>
 
-                    <Button.Group color="green" size="large">
-                        <Button>Download</Button>
-                        <Dropdown className="button icon" floating options={links["stable"]} trigger={<></>} />
-                    </Button.Group>
+                    <Dropdown
+                        text="Download"
+                        icon="download"
+                        floating
+                        labeled
+                        button
+                        className="large green icon" // Гениально у кнопок есть свойство size="large", а у дропдаунов нет
+                    >
+                        <Dropdown.Menu>
+                            {links["stable"].map((link) => (
+                                <Dropdown.Item as="a" href={link.value} content={link.text} icon={link.icon} />
+                            ))}
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </Grid.Column>
 
                 <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
@@ -43,11 +53,22 @@ const DownloadPage = () => (
                     </Header>
 
                     <p style={{ fontSize: '1.33em' }}>Current version: 1.1b</p>
-
-                    <Button.Group size="large" basic>
-                        <Button>Download</Button>
-                        <Dropdown className="button icon" floating options={links["beta"]} trigger={<></>} />
-                    </Button.Group>
+                   
+                    <Dropdown
+                        text="Download"
+                        icon="download"
+                        floating
+                        labeled
+                        button
+                        basic
+                        className="large icon"
+                    >
+                        <Dropdown.Menu>
+                            {links["beta"].map((link) => (
+                                <Dropdown.Item as="a" href={link.value} content={link.text} icon={link.icon} />
+                            ))}
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </Grid.Column>
             </Grid.Row>
         </Grid>

@@ -1,3 +1,7 @@
+*:not(i) {
+  font-family: "Inter" !important;
+}
+
 body {
   min-height: 100vh;
   display: flex;
