@@ -19,7 +19,7 @@ public class LauncherApplication extends Application {
         hc.SetPrimStage(stage);
 
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
-        stage.setTitle("Hello!");
+        stage.setTitle("Barbaris");
         stage.setScene(scene);
         stage.show();
     }
