@@ -15,7 +15,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <AnchorPane fx:id="mainpane" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="mainpane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f8f8ff;">
          <children>
             <Button fx:id="addProjBtn" mnemonicParsing="false" onAction="#addProject" prefWidth="200.0" text="Добавить проект" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
@@ -27,9 +27,33 @@
                  </font></Button>
          </children>
       </AnchorPane>
-      <VBox fx:id="projpane" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.rowIndex="1">
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <content>
+            <VBox fx:id="projpane" prefHeight="1000.0" prefWidth="674.0" spacing="10.0" />
+         </content>
          <GridPane.margin>
             <Insets left="10.0" />
-         </GridPane.margin></VBox>
+         </GridPane.margin>
+      </ScrollPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f8f8ff;" GridPane.columnIndex="1" />
+      <AnchorPane fx:id="btnsPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: f8f8ff;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Button fx:id="gitOpenBtn" maxHeight="70.0" mnemonicParsing="false" onAction="#gitOpen" prefHeight="70.0" text="Открыть клиент ГИТА (Win)" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="openAutosaverBtn" maxHeight="70.0" mnemonicParsing="false" onAction="#openAutosaver" prefHeight="70.0" text="Открыть Autosaver" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="openVscBtn" maxHeight="70.0" mnemonicParsing="false" onAction="#openVSC" prefHeight="70.0" text="Открыть VS Code" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </GridPane>
