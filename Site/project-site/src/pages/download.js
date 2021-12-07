@@ -1,6 +1,5 @@
 //import './App.css';
 import {
-  Button,
   Segment,
   Grid,
   Header,
@@ -21,15 +20,17 @@ var links = {
 
 // Ясное дело выглядит говно, но пока так
 const DownloadPage = () => (
-    <Segment style={{ padding: '0em' }} vertical>
-        <Grid celled='internally' columns='equal' stackable>
-            <Grid.Row textAlign='center'>
-                <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-                    <Header as='h3' style={{ fontSize: '2em' }}>
+
+
+    <Segment style={{ padding: "0" }} vertical>
+        <Grid celled="internally" columns="equal" stackable>
+            <Grid.Row textAlign="center">
+                <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
+                    <Header as="h3" style={{ fontSize: "2em" }}>
                         Stable Version
                     </Header>
                     
-                    <p style={{ fontSize: '1.33em' }}>Current version: 1.0</p>
+                    <p style={{ fontSize: "1.33em" }}>Current version: 1.0</p>
 
                     <Dropdown
                         text="Download"
@@ -37,7 +38,7 @@ const DownloadPage = () => (
                         floating
                         labeled
                         button
-                        className="large green icon" // Гениально у кнопок есть свойство size="large", а у дропдаунов нет
+                        className="large green icon" // Гениально, у кнопок есть свойство size, а у дропдаунов нет
                     >
                         <Dropdown.Menu>
                             {links["stable"].map((link) => (
@@ -47,12 +48,12 @@ const DownloadPage = () => (
                     </Dropdown>
                 </Grid.Column>
 
-                <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-                    <Header as='h3' style={{ fontSize: '2em' }}>
+                <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
+                    <Header as="h3" style={{ fontSize: "2em" }}>
                         Beta Version
                     </Header>
 
-                    <p style={{ fontSize: '1.33em' }}>Current version: 1.1b</p>
+                    <p style={{ fontSize: "1.33em" }}>Current version: 1.1b</p>
                    
                     <Dropdown
                         text="Download"

@@ -9,7 +9,7 @@ import {
 import HeaderMenu from './components/header';
 
 import DownloadPage from './pages/download';
-
+import MainPage from './pages/main';
 
 //ROUTING
 const App = () => (
@@ -17,7 +17,7 @@ const App = () => (
     <HeaderMenu />
     <main style={{ marginTop: "2em" }}>
       <Routes>
-        <Route path="/" />
+        <Route path="/" element={<MainPage />} />
         <Route path="/download" element={<DownloadPage />} />
       </Routes>
     </main>
