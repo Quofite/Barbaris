@@ -1,0 +1,41 @@
+C:\olimpiada\winformscalctest\winformscalctest\obj\Debug\winformscalctest.csprojAssemblyReference.cache
+C:\olimpiada\winformscalctest\winformscalctest\obj\Debug\winformscalctest.Form1.resources
+C:\olimpiada\winformscalctest\winformscalctest\obj\Debug\winformscalctest.Properties.Resources.resources
+C:\olimpiada\winformscalctest\winformscalctest\obj\Debug\winformscalctest.csproj.GenerateResource.cache
+C:\olimpiada\winformscalctest\winformscalctest\obj\Debug\winformscalctest.csproj.CoreCompileInputs.cache
+C:\olimpiada\winformscalctest\winformscalctest\obj\Debug\winformscalctest.Main.resources
+C:\olimpiada\winformscalctest\winformscalctest\obj\Debug\winformscalctest.SqEq.resources
+C:\olimpiada\winformscalctest\winformscalctest\obj\Debug\winformscalctest.Sochetaniya.resources
+C:\olimpiada\winformscalctest\winformscalctest\obj\Debug\winformscalctest.Corners.resources
+C:\olimpiada\winformscalctest\winformscalctest\obj\Debug\winformscalctest.Treugolniki.resources
+C:\olimpiada\winformscalctest\winformscalctest\bin\Debug\Ultimate Calculator 228.exe.config
+C:\olimpiada\winformscalctest\winformscalctest\bin\Debug\Ultimate Calculator 228.exe
+C:\olimpiada\winformscalctest\winformscalctest\bin\Debug\Ultimate Calculator 228.pdb
+C:\olimpiada\winformscalctest\winformscalctest\obj\Debug\Ultimate Calculator 228.exe
+C:\olimpiada\winformscalctest\winformscalctest\obj\Debug\Ultimate Calculator 228.pdb
+C:\Coding\Ultimate Calculator 228\winformscalctest\bin\Debug\Ultimate Calculator 228.exe.config
+C:\Coding\Ultimate Calculator 228\winformscalctest\bin\Debug\Ultimate Calculator 228.exe
+C:\Coding\Ultimate Calculator 228\winformscalctest\bin\Debug\Ultimate Calculator 228.pdb
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.csprojAssemblyReference.cache
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.Corners.resources
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.Form1.resources
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.Main.resources
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.Properties.Resources.resources
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.Sochetaniya.resources
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.SqEq.resources
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.Treugolniki.resources
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.csproj.GenerateResource.cache
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.csproj.CoreCompileInputs.cache
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\Ultimate Calculator 228.exe
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\Ultimate Calculator 228.pdb
+C:\Coding\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.MoneyConv.resources
+D:\Coding\C#\WinForms\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.csproj.AssemblyReference.cache
+D:\Coding\C#\WinForms\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.Form1.resources
+D:\Coding\C#\WinForms\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.Properties.Resources.resources
+D:\Coding\C#\WinForms\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.csproj.GenerateResource.cache
+D:\Coding\C#\WinForms\Ultimate Calculator 228\winformscalctest\obj\Debug\Ultimate Calculator 228.exe
+D:\Coding\C#\WinForms\Ultimate Calculator 228\winformscalctest\obj\Debug\Ultimate Calculator 228.pdb
+D:\Coding\C#\WinForms\Ultimate Calculator 228\winformscalctest\bin\Debug\Ultimate Calculator 228.exe.config
+D:\Coding\C#\WinForms\Ultimate Calculator 228\winformscalctest\bin\Debug\Ultimate Calculator 228.exe
+D:\Coding\C#\WinForms\Ultimate Calculator 228\winformscalctest\bin\Debug\Ultimate Calculator 228.pdb
+D:\Coding\C#\WinForms\Ultimate Calculator 228\winformscalctest\obj\Debug\winformscalctest.csproj.CoreCompileInputs.cache
