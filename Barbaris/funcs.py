@@ -1,5 +1,6 @@
 import os
 import csv
+import json
 
 from PyQt5.QtWidgets import QMessageBox, QFileDialog
 
@@ -62,5 +63,18 @@ def show_projs(vbox):
 
 
 # ------------------------------------------ КОНФИГУРАТОР
-def save_config():
-    return
+def save_config(vscPath, backuperPath="none", ggcPath="\\GitClient.exe", calcPath="\\Calculator.exe", convPath="none"):
+    updated = {"vsc": vscPath,
+               "ggc": ggcPath,
+               "backuper": backuperPath,
+               "convertor": convPath,
+               "calculator": calcPath}
+    json.dumps(updated)
+
+    with open("pathes.json", 'w') as file:
+        file.write(str(updated).replace("\'", "\""))
+
+
+def get_config():
+    with open("pathes.json", 'r') as file:
+        return json.load(file)

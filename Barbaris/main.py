@@ -4,18 +4,18 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.setEnabled(True)
-        MainWindow.resize(900, 570)
+    def setupUi(self, main_window):
+        main_window.setObjectName("MainWindow")
+        main_window.setEnabled(True)
+        main_window.resize(900, 570)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
-        MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QtCore.QSize(900, 570))
-        MainWindow.setMaximumSize(QtCore.QSize(900, 570))
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        sizePolicy.setHeightForWidth(main_window.sizePolicy().hasHeightForWidth())
+        main_window.setSizePolicy(sizePolicy)
+        main_window.setMinimumSize(QtCore.QSize(900, 570))
+        main_window.setMaximumSize(QtCore.QSize(900, 570))
+        self.centralwidget = QtWidgets.QWidget(main_window)
         self.centralwidget.setObjectName("centralwidget")
         self.addProjBtn = QtWidgets.QPushButton(self.centralwidget)
         self.addProjBtn.setGeometry(QtCore.QRect(10, 10, 191, 61))
@@ -65,10 +65,10 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.openConfBtn.setFont(font)
         self.openConfBtn.setObjectName("openConfBtn")
-        MainWindow.setCentralWidget(self.centralwidget)
+        main_window.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(main_window)
+        QtCore.QMetaObject.connectSlotsByName(main_window)
 
         self.functional()
         funcs.show_projs(self.projPane)
@@ -86,9 +86,9 @@ class Ui_MainWindow(object):
         self.confWin = ConfigWindow()
         self.confWin.show()
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, main_window):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Barbaris Launcher"))
+        main_window.setWindowTitle(_translate("MainWindow", "Barbaris Launcher"))
         self.addProjBtn.setText(_translate("MainWindow", "Добавить проект"))
         self.openGGCBtn.setText(_translate("MainWindow", "Открыть GGC"))
         self.openASBtn.setText(_translate("MainWindow", "Открыть Backuper"))
@@ -182,9 +182,18 @@ class Ui_pathConfig(object):
         QtCore.QMetaObject.connectSlotsByName(pathConfig)
 
         self.functions()
+        self.set_pathes()
 
     def functions(self):
-        self.saveBtn.clicked.connect(funcs.save_config)
+        self.saveBtn.clicked.connect(lambda: funcs.save_config(self.vscPath.text(), self.backuperPath.text(), self.ggcPath.text(), self.calcpath.text(), self.convPath.text()))
+
+    def set_pathes(self):
+        data = funcs.get_config()
+        self.vscPath.setText(data['vsc'])
+        self.backuperPath.setText(data['backuper'])
+        self.ggcPath.setText(data['ggc'])
+        self.calcpath.setText(data['calculator'])
+        self.convPath.setText(data['convertor'])
 
     def retranslateUi(self, pathConfig):
         _translate = QtCore.QCoreApplication.translate
