@@ -2,7 +2,8 @@ import os
 import csv
 import json
 
-from PyQt5.QtWidgets import QMessageBox, QFileDialog
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QMessageBox, QFileDialog, QPushButton
 
 
 def make_popup(header, text):
@@ -15,8 +16,11 @@ def make_popup(header, text):
 
 # ---------------------------------------- КНОПКИ НА ПРАВОЙ ПАНЕЛИ
 def open_ggc():
+    with open("pathes.json", 'r') as file:
+        path = json.load(file)
+
     try:
-        os.startfile(r'C:\Users\marga\Desktop\Barbaris\GitClient.exe')
+        os.startfile(os.curdir + path['ggc'])
     except Exception:
         make_popup("Ошибка", "Файл GitClient.exe не найден в корневой папке Barbaris")
 
@@ -26,15 +30,21 @@ def open_autosaver():
 
 
 def open_vsc():
+    with open("pathes.json", 'r') as file:
+        path = json.load(file)
+
     try:
-        os.startfile(r'C:\CodingUtilities\Microsoft VS Code\Code.exe')
+        os.startfile(os.curdir + path['vsc'])
     except Exception:
-        make_popup("Ошибка", "Visual Studio Code не найден на вашем ПК, установите его")
+        make_popup("Ошибка", "Путь к VS Code не установлен. Установите его в конфигураторе")
 
 
 def open_calc():
+    with open("pathes.json", 'r') as file:
+        path = json.load(file)
+
     try:
-        os.startfile(r'C:\Users\marga\Desktop\Barbaris\Calculator.exe')
+        os.startfile(os.curdir + path['calculator'])
     except Exception:
         make_popup("Ошибка", "Calculator.exe не найден в корневой папке Barbaris")
 
@@ -44,7 +54,7 @@ def open_convertor():
 
 
 # ------------------------------------------ ВСЕ, СВЯЗАННОЕ С ПРОЕКТАМИ
-def add_proj(main_window):
+def add_proj(main_window, vbox):
     file = str(QFileDialog.getExistingDirectory(main_window, "Выберете директорию"))
     splitted = file.split('/')
     projname = splitted[len(splitted) - 1]
@@ -54,12 +64,30 @@ def add_proj(main_window):
         writer = csv.writer(file)
         writer.writerow(proj)
 
+    show_projs(vbox)
+
 
 def show_projs(vbox):
+    vbox.clear()
+
     with open("projects.csv", 'r', newline='') as file:
         reader = csv.reader(file)
         for row in reader:
-            print(row[0] + " - " + row[1])
+            text = "{name} ({path})".format(name=row[0], path=row[1])
+            btn = QPushButton(text)
+            btn.resize(400, 60)
+            btn.clicked.connect(lambda: open_proj(row[1]))
+            listWidgetItem = QtWidgets.QListWidgetItem()
+            listWidgetItem.setSizeHint(btn.sizeHint())
+            vbox.addItem(listWidgetItem)
+            vbox.setItemWidget(listWidgetItem, btn)
+
+
+def open_proj(path):
+    # TODO: по пути будет открываться gitclient, там надо сделать открытие проги с параметром-путём, который сразу запишется в поле проекта
+    # TODO: тоже самое будет с backuper'ом и vsc
+    # TODO: калькулятор и конвертор открываться не будут
+    print(path)
 
 
 # ------------------------------------------ КОНФИГУРАТОР

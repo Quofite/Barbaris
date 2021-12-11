@@ -53,17 +53,6 @@
      <string>Добавить проект</string>
     </property>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>80</y>
-      <width>681</width>
-      <height>481</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="projPane"/>
-   </widget>
    <widget class="QPushButton" name="openGGCBtn">
     <property name="geometry">
      <rect>
@@ -173,6 +162,31 @@
     <property name="text">
      <string>Открыть
 конфигуратор путей</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="projPane">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>681</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustToContents</enum>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>false</bool>
+    </property>
+    <property name="spacing">
+     <number>70</number>
     </property>
    </widget>
   </widget>
