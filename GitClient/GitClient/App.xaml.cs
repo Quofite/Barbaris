@@ -10,6 +10,15 @@ namespace GitClient {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+    /// 
+
     public partial class App : Application {
+        public string[] Params { get; set; }
+
+        protected override void OnStartup(StartupEventArgs e) {
+            Params = e.Args;
+
+            base.OnStartup(e);
+        }
     }
 }

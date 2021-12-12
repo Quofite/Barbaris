@@ -15,7 +15,13 @@ namespace GitClient {
 
     public partial class MainWindow : Window {
         public MainWindow() {
+            var parameters = ((App)Application.Current).Params;
             InitializeComponent();
+
+            if (parameters.Length != 0) {
+                dirTextBox.Text = parameters[0];
+                OpenDir();
+            }
         }
 
         // получение ссылки на git репозиторий в json
@@ -85,14 +91,19 @@ namespace GitClient {
         // ---------------------------------------------------------------------- обработчики событий кнопок
         // открытие директории
         private void openDirBtn_Click(object sender, RoutedEventArgs e) {
+            OpenDir();  // нужно так, чтобы можно было открывать директорию и если из лаунчера придет путь
+        }
+
+        private void OpenDir() {
             string workingDir = @dirTextBox.Text;                   // получение пути
             gitLink.Text = "Ссылка на удаленный репозиторий";       // отчистка ссылки на гитхаб
             gitStatusBar.Text = string.Empty;                       // отчистка строки состояния гита
             stackPanel.Children.Clear();                            // отчистка stack panel
-            File.WriteAllText(workingDir + "\\.gitignore", string.Empty);
 
             // если директоирия существует
             if (Directory.Exists(workingDir)) {
+                File.WriteAllText(workingDir + "\\.gitignore", string.Empty);
+
                 // если есть папка гита
                 if (Directory.Exists(workingDir + @"\.git")) {
                     // установка сообщения об инициализации гита
@@ -118,6 +129,10 @@ namespace GitClient {
                 // получение папок и файлов из основного каталога
                 GetDirs(workingDir, 10);
                 GetFiles(workingDir, 10);
+            }
+            else {
+                MessageBox.Show("Введеной директории не существует");
+                return;
             }
         }
 
