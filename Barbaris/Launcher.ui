@@ -89,7 +89,7 @@
      <string>Открыть Backuper</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="openVSCBtn">
+   <widget class="QPushButton" name="openIDEBtn">
     <property name="geometry">
      <rect>
       <x>700</x>
@@ -104,7 +104,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Открыть VS Code</string>
+     <string>Открыть IDE</string>
     </property>
    </widget>
    <widget class="QPushButton" name="openCalcBtn">

@@ -46,7 +46,7 @@
      </font>
     </property>
     <property name="text">
-     <string>VS Code</string>
+     <string>IDE</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -142,7 +142,7 @@
      <string>Сохранить</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="vscPath">
+   <widget class="QLineEdit" name="idePath">
     <property name="geometry">
      <rect>
       <x>140</x>

@@ -1,6 +1,8 @@
 import os
 import csv
 import json
+import traceback
+import subprocess
 
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QFileDialog, QPushButton
@@ -15,45 +17,74 @@ def make_popup(header, text):
 
 
 # ---------------------------------------- КНОПКИ НА ПРАВОЙ ПАНЕЛИ
+# открытие ggc
 def open_ggc():
     with open("pathes.json", 'r') as file:
         path = json.load(file)
 
     try:
-        os.startfile(os.curdir + path['ggc'])
+        subprocess.Popen([os.curdir + path['ggc']])
     except Exception:
-        make_popup("Ошибка", "Файл GitClient.exe не найден в корневой папке Barbaris")
+        make_popup("Ошибка", "Файл GitClient.exe не найден в корневой папке Barbaris: " + os.curdir + path['ggc'])
 
 
-def open_autosaver():
-    make_popup("Недоступно", "Это приложение еще не создано")
-
-
-def open_vsc():
+# открыть ggc при нажатии на проект
+def open_ggc_from_projs(arg):
     with open("pathes.json", 'r') as file:
         path = json.load(file)
 
     try:
-        os.startfile(os.curdir + path['vsc'])
+        subprocess.Popen([os.curdir + path['ggc'], arg])
     except Exception:
-        make_popup("Ошибка", "Путь к VS Code не установлен. Установите его в конфигураторе")
+        make_popup("Ошибка", "Файл GitClient.exe не найден в корневой папке Barbaris: " + os.curdir + path['ggc'])
+        print(traceback.format_exc())
 
 
+# открыть backuper
+def open_backuper():
+    make_popup("Недоступно", "Это приложение еще не создано")
+
+
+# открыть IDE
+def open_ide():
+    with open("pathes.json", 'r') as file:
+        path = json.load(file)
+
+    try:
+        subprocess.Popen([path['ide']])
+    except Exception:
+        make_popup("Ошибка", "Путь к IDE не установлен. Установите его в конфигураторе")
+
+
+# открыть IDE при нажатии на проект
+def open_ide_from_projs(arg):
+    with open("pathes.json", 'r') as file:
+        path = json.load(file)
+
+    try:
+        subprocess.Popen([path['ide'], arg])
+    except Exception:
+        make_popup("Ошибка", "Путь к IDE не установлен. Установите его в конфигураторе")
+
+
+# открыть калькулятор
 def open_calc():
     with open("pathes.json", 'r') as file:
         path = json.load(file)
 
     try:
-        os.startfile(os.curdir + path['calculator'])
+        subprocess.Popen([path['calculator']])
     except Exception:
-        make_popup("Ошибка", "Calculator.exe не найден в корневой папке Barbaris")
+        make_popup("Исключение", traceback.format_exc())
 
 
+# открыть конвертор в ico
 def open_convertor():
     make_popup("Недоступно", "Это приложение еще не создано")
 
 
 # ------------------------------------------ ВСЕ, СВЯЗАННОЕ С ПРОЕКТАМИ
+# добавить проект в список
 def add_proj(main_window, vbox):
     file = str(QFileDialog.getExistingDirectory(main_window, "Выберете директорию"))
     splitted = file.split('/')
@@ -67,6 +98,7 @@ def add_proj(main_window, vbox):
     show_projs(vbox)
 
 
+# показать проекты из списка
 def show_projs(vbox):
     vbox.clear()
 
@@ -83,16 +115,16 @@ def show_projs(vbox):
             vbox.setItemWidget(listWidgetItem, btn)
 
 
+# открыть проект из списка
 def open_proj(path):
-    # TODO: по пути будет открываться gitclient, там надо сделать открытие проги с параметром-путём, который сразу запишется в поле проекта
-    # TODO: тоже самое будет с backuper'ом и vsc
-    # TODO: калькулятор и конвертор открываться не будут
-    print(path)
+    open_ide_from_projs(path)
+    open_ggc_from_projs(path)
 
 
 # ------------------------------------------ КОНФИГУРАТОР
-def save_config(vscPath, backuperPath="none", ggcPath="\\GitClient.exe", calcPath="\\Calculator.exe", convPath="none"):
-    updated = {"vsc": vscPath,
+# сохранить пути в json
+def save_config(idePath, backuperPath="none", ggcPath="\\GitClient.exe", calcPath="\\Calculator.exe", convPath="none"):
+    updated = {"ide": idePath,
                "ggc": ggcPath,
                "backuper": backuperPath,
                "convertor": convPath,
@@ -103,6 +135,7 @@ def save_config(vscPath, backuperPath="none", ggcPath="\\GitClient.exe", calcPat
         file.write(str(updated).replace("\'", "\""))
 
 
+# достать пути из json
 def get_config():
     with open("pathes.json", 'r') as file:
         return json.load(file)

@@ -19,8 +19,12 @@ namespace GitClient {
             InitializeComponent();
 
             if (parameters.Length != 0) {
-                dirTextBox.Text = parameters[0];
-                OpenDir();
+                int res = string.Compare(parameters[0].ToString(), "nopath");
+
+                if (res < 0 || res > 0) {
+                    dirTextBox.Text = parameters[0].ToString();
+                    OpenDir();
+                }
             }
         }
 
