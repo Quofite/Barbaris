@@ -80,7 +80,13 @@ def open_calc():
 
 # открыть конвертор в ico
 def open_convertor():
-    make_popup("Недоступно", "Это приложение еще не создано")
+    with open("pathes.json", 'r') as file:
+        path = json.load(file)
+
+    try:
+        os.startfile(os.path.abspath(os.curdir) + path['convertor'])
+    except Exception:
+        make_popup("Исключение", traceback.format_exc())
 
 
 # ------------------------------------------ ВСЕ, СВЯЗАННОЕ С ПРОЕКТАМИ

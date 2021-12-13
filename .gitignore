@@ -1,5 +1,8 @@
 /Barbaris/venv
 /Barbaris/build
 /Barbaris/dist
+/PngToIco/venv
+/PngToIco/build
+/PngToIco/dist
 /Site/project-site/build
 /Site/project-site/node_modules
