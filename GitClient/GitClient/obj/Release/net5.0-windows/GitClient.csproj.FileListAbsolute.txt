@@ -20,3 +20,5 @@ D:\Coding\SimpleWebDev\GitClient\GitClient\obj\Release\net5.0-windows\ref\GitCli
 D:\Coding\SimpleWebDev\GitClient\GitClient\obj\Release\net5.0-windows\GitClient.pdb
 D:\Coding\SimpleWebDev\GitClient\GitClient\obj\Release\net5.0-windows\GitClient.genruntimeconfig.cache
 D:\Coding\SimpleWebDev\GitClient\GitClient\obj\Release\net5.0-windows\GitClient.csproj.AssemblyReference.cache
+D:\Coding\SimpleWebDev\GitClient\GitClient\bin\Release\net5.0-windows\Ookii.Dialogs.Wpf.dll
+D:\Coding\SimpleWebDev\GitClient\GitClient\obj\Release\net5.0-windows\GitClient.csproj.CopyComplete

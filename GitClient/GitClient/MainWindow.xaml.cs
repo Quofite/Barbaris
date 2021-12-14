@@ -1,10 +1,12 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.Win32;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Ookii.Dialogs.Wpf;
 
 namespace GitClient {
 
@@ -14,17 +16,16 @@ namespace GitClient {
     }
 
     public partial class MainWindow : Window {
+
+        // конструктор класса
         public MainWindow() {
-            var parameters = ((App)Application.Current).Params;
-            InitializeComponent();
+            var parameters = ((App)Application.Current).Params; // параметры при запуске
+            InitializeComponent();  // запуск GUI
 
+            // если параметров больше нуля, то сразу открывается папка из параметров
             if (parameters.Length != 0) {
-                int res = string.Compare(parameters[0].ToString(), "nopath");
-
-                if (res < 0 || res > 0) {
-                    dirTextBox.Text = parameters[0].ToString();
-                    OpenDir();
-                }
+                dirTextBox.Text = parameters[0].ToString();
+                OpenDir();
             }
         }
 
@@ -95,6 +96,14 @@ namespace GitClient {
         // ---------------------------------------------------------------------- обработчики событий кнопок
         // открытие директории
         private void openDirBtn_Click(object sender, RoutedEventArgs e) {
+
+            if (dirTextBox.Text == "Путь до рабочей директории") {
+                VistaFolderBrowserDialog folderBrowserDialog = new VistaFolderBrowserDialog();
+
+                if (folderBrowserDialog.ShowDialog() == true)
+                    dirTextBox.Text = folderBrowserDialog.SelectedPath;
+            }
+
             OpenDir();  // нужно так, чтобы можно было открывать директорию и если из лаунчера придет путь
         }
 

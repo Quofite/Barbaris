@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "KPGaEHAy7wFxQSW05ZVL18ahwNE/9Dm4budDxGbNnM9sDqpso3Z5SU7RPUC2agMMHZaj6alssWK/PLS9eEtT7g==",
+  "dgSpecHash": "cyNCsFv3JF6OU4ae3kX93rKvCw6xHjCWb9+1FwDd0SC1zhReXtnjFcLw6ay9osPMsAFDFAY9gCC/ANXI2kCv4A==",
   "success": true,
   "projectFilePath": "D:\\Coding\\SimpleWebDev\\GitClient\\GitClient\\GitClient.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\marga\\.nuget\\packages\\ookii.dialogs.wpf\\5.0.0\\ookii.dialogs.wpf.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

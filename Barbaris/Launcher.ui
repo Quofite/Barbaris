@@ -34,6 +34,10 @@
   <property name="windowTitle">
    <string>Barbaris Launcher</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Barbaris.ico</normaloff>Barbaris.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="addProjBtn">
     <property name="geometry">
