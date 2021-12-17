@@ -25,7 +25,7 @@ def open_ggc():
     try:
         subprocess.Popen([os.curdir + path['ggc']])
     except Exception:
-        make_popup("Ошибка", "Файл GitClient.exe не найден в корневой папке Barbaris: " + os.curdir + path['ggc'])
+        make_popup("Исключение", traceback.format_exc())
 
 
 # открыть ggc при нажатии на проект
@@ -36,15 +36,60 @@ def open_ggc_from_projs(arg):
     try:
         subprocess.Popen([os.curdir + path['ggc'], arg])
     except Exception:
-        make_popup("Ошибка", "Файл GitClient.exe не найден в корневой папке Barbaris: " + os.curdir + path['ggc'])
-        print(traceback.format_exc())
+        make_popup("Исключение", traceback.format_exc())
+
+
+# ---------------------------------------------------------------
+# открыть backuper
+def open_backuper():
+    with open("pathes.json", 'r') as file:
+        path = json.load(file)
+
+    try:
+        subprocess.Popen([os.curdir + path['backuper']])
+    except Exception:
+        make_popup("Исключение", traceback.format_exc())
 
 
 # открыть backuper
-def open_backuper():
-    make_popup("Недоступно", "Это приложение еще не создано")
+def open_backuper_from_projs(workDir):
+    with open("pathes.json", 'r') as file:
+        path = json.load(file)
+
+    workDir = workDir.replace('/', '\\')
+
+    splitted = workDir.split("\\")
+    backup = os.path.abspath(os.curdir) + "\\" + splitted[len(splitted) - 1] + "_backup"
+
+    try:
+        for the_file in os.listdir(backup):
+            file_path = os.path.join(backup, the_file)
+            try:
+                if os.path.isfile(file_path):
+                    os.unlink(file_path)
+            except Exception as e:
+                print(e)
+
+        os.rmdir(backup)
+        os.mkdir(backup)
+    except Exception:
+        print(traceback.format_exc())
+
+    command = "xcopy /Y /E "
+    pathes = workDir + " " + backup
+    pathes.replace("/", "\\")
+    command = command + pathes
+
+    command = f"\"{command}\""
+    print(command)
+
+    try:
+        subprocess.Popen([os.curdir + path['backuper'], command])
+    except Exception:
+        make_popup("Исключение", traceback.format_exc())
 
 
+# ---------------------------------------------------------------
 # открыть IDE
 def open_ide():
     with open("pathes.json", 'r') as file:
@@ -67,6 +112,7 @@ def open_ide_from_projs(arg):
         make_popup("Ошибка", "Путь к IDE не установлен. Установите его в конфигураторе")
 
 
+# ---------------------------------------------------------------
 # открыть калькулятор
 def open_calc():
     with open("pathes.json", 'r') as file:
@@ -125,6 +171,7 @@ def show_projs(vbox):
 def open_proj(path):
     open_ide_from_projs(path)
     open_ggc_from_projs(path)
+    open_backuper_from_projs(path)
 
 
 # ------------------------------------------ КОНФИГУРАТОР
