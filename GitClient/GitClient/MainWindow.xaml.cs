@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Ookii.Dialogs.Wpf;
 using System;
+using System.Reflection;
 
 namespace GitClient {
 
@@ -130,13 +131,14 @@ namespace GitClient {
                 else {  // в противном случае создаем git init
                     try {
                         File.WriteAllText("./gitinitscript.bat",
-                        "cd " + workingDir + "\n" +
+                        "cd /D " + workingDir + "\n" +
                         "git init \n"
                         );
-                        //Process.Start("./gitinitscript.bat");
+
                         ProcessStartInfo procinfo = new ProcessStartInfo();
-                        procinfo.FileName = "./gitinitscript.bat";
-                        procinfo.WorkingDirectory = Path.GetDirectoryName("./gitinitscript.bat");
+                        procinfo.FileName = "gitinitscript.bat";
+                        procinfo.WorkingDirectory = Environment.CurrentDirectory;
+
                         procinfo.UseShellExecute = false;
                         Process.Start(procinfo);
                     }
@@ -162,7 +164,7 @@ namespace GitClient {
 
         // git add
         private void gitAddBtn_Click(object sender, RoutedEventArgs e) {
-            File.WriteAllText("./gitadd.bat", $"cd {dirTextBox.Text} \n" + "git add .");
+            File.WriteAllText("./gitadd.bat", $"cd /D {dirTextBox.Text} \n" + "git add . \n");
             Process.Start("./gitadd.bat");
             MessageBox.Show("Файлы успешно добавлены в ожидание");
             FileInfo batnik = new FileInfo("./gitadd.bat");
@@ -171,7 +173,7 @@ namespace GitClient {
 
         // git commit
         private void gitCommitBtn_Click(object sender, RoutedEventArgs e) {
-            File.WriteAllText("./gitcommit.bat", $"cd {dirTextBox.Text} \n" + $"git commit -m \"{comment.Text}\"");
+            File.WriteAllText("./gitcommit.bat", $"cd /D {dirTextBox.Text} \n" + $"git commit -m \"{comment.Text}\" \n");
             Process.Start("./gitcommit.bat");
             MessageBox.Show("Файлы успешно отправлены в локальный репозиторий Git");
             FileInfo batnik = new FileInfo("./gitcommit.bat");
@@ -185,7 +187,7 @@ namespace GitClient {
                 return;
             }
 
-            File.WriteAllText("./gitpush.bat", $"cd {dirTextBox.Text} \n" + $"git remote add origin {gitLink.Text} \n" + "git push -u origin master");
+            File.WriteAllText("./gitpush.bat", $"cd /D {dirTextBox.Text} \n" + $"git remote add origin {gitLink.Text} \n" + "git push -u origin master \n");
             Process.Start("./gitpush.bat");
             MessageBox.Show("Файлы успешно загруженны на удаленный репозиторий");
             FileInfo batnik = new FileInfo("./gitpush.bat");
