@@ -1,8 +1,12 @@
 /Barbaris/venv
 /Barbaris/build
 /Barbaris/dist
+/Barbaris/Backuper.exe
+/Barbaris/main.exe
+
 /PngToIco/venv
 /PngToIco/build
 /PngToIco/dist
+
 /Site/project-site/build
 /Site/project-site/node_modules
