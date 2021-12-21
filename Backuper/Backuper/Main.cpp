@@ -26,9 +26,6 @@ int main(int argc, char* argv[]) {
     }
     else {
         system(argv[1]);
-        cout << "\nНажмите Enter для закрытия";
-        string a;
-        cin >> a;
     }
 
     return 0;

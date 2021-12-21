@@ -74,6 +74,7 @@ def open_backuper_from_projs(workDir):
         os.mkdir(backup)
     except Exception:
         print(traceback.format_exc())
+        os.mkdir(backup)
 
     command = "xcopy /Y /E "
     pathes = workDir + " " + backup

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Ookii.Dialogs.Wpf;
+using System;
 
 namespace GitClient {
 
@@ -120,20 +121,30 @@ namespace GitClient {
                 // если есть папка гита
                 if (Directory.Exists(workingDir + @"\.git")) {
                     // установка сообщения об инициализации гита
-                    gitStatusBar.Text += "git initialized";
+                    gitStatusBar.Text += "Git инициализировн";
 
                     // если есть ссылка на гитхаб, то получаем
                     if (File.Exists(workingDir + @"\gitlink.json"))
                         GetFromJson(workingDir);
                 }
                 else {  // в противном случае создаем git init
-                    File.WriteAllText("./gitinitscript.bat",
+                    try {
+                        File.WriteAllText("./gitinitscript.bat",
                         "cd " + workingDir + "\n" +
                         "git init \n"
-                    );
-                    Process.Start("./gitinitscript.bat");
+                        );
+                        //Process.Start("./gitinitscript.bat");
+                        ProcessStartInfo procinfo = new ProcessStartInfo();
+                        procinfo.FileName = "./gitinitscript.bat";
+                        procinfo.WorkingDirectory = Path.GetDirectoryName("./gitinitscript.bat");
+                        procinfo.UseShellExecute = false;
+                        Process.Start(procinfo);
+                    }
+                    catch(Exception e) {
+                        MessageBox.Show(e.Message);
+                    }
                     MessageBox.Show("Рабочая директория Git инициализирована в " + workingDir);
-                    gitStatusBar.Text = "Git инициализировн";
+                    gitStatusBar.Text = "Git инициализировaн";
                     File.Create("./.gitignore");
                     FileInfo batnik = new FileInfo("./gitinitscript.bat");
                     batnik.Delete();
