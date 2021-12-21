@@ -1,9 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\marga\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\marga\\.nuget\\packages",
-      "C:\\CodingUtilities\\Visual Studio SDK\\NuGetPackages"
-    ]
-  }
-}

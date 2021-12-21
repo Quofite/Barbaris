@@ -1,12 +1,24 @@
+/Backuper/.vs
+/Backuper/Debug
+
 /Barbaris/venv
 /Barbaris/build
 /Barbaris/dist
+/Barbaris/__pycache__
+/barbaris/.idea
 /Barbaris/Backuper.exe
 /Barbaris/main.exe
+
+/GitClient/.vs
+/GitClient/Gitclient/bin
+/GitClient/Gitclient/obj
+/GitClient/Gitclient/Properties
 
 /PngToIco/venv
 /PngToIco/build
 /PngToIco/dist
+/PngToIco/.idea
+/PngToIco/__pycache__
 
 /Site/project-site/build
 /Site/project-site/node_modules

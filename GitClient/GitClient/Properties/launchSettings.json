@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "GitClient": {
-      "commandName": "Executable",
-      "executablePath": "D:\\Coding\\SimpleWebDev\\GitClient\\GitClient\\bin\\Release\\net5.0-windows\\GitClient.exe"
-    }
-  }
-}
