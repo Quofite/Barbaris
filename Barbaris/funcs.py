@@ -51,7 +51,7 @@ def open_backuper():
         make_popup("Исключение", traceback.format_exc())
 
 
-# открыть backuper
+# открыть backuper через открытие проекта
 def open_backuper_from_projs(workDir):
     with open("pathes.json", 'r') as file:
         path = json.load(file)
