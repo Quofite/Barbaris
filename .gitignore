@@ -10,6 +10,8 @@
 /Barbaris/Backuper.exe
 /Barbaris/main.exe
 
+/BarbarisSetup
+
 /GitClient/.vs
 /GitClient/Gitclient/bin
 /GitClient/Gitclient/obj
