@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -8,7 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Ookii.Dialogs.Wpf;
 using System;
-using System.Reflection;
 
 namespace GitClient {
 
@@ -34,13 +32,11 @@ namespace GitClient {
         // получение ссылки на git репозиторий в json
         private async Task SetInJson(string workingDir, string gitlink) {
             // открытие json файла
-            using (FileStream fs = new FileStream("gitlink.json", FileMode.OpenOrCreate)) {
+            using (FileStream fs = new FileStream(workingDir + "/gitlink.json", FileMode.OpenOrCreate)) {
                 // создание объекта json
                 JsonLink link = new JsonLink() { Link = gitlink };
                 await JsonSerializer.SerializeAsync<JsonLink>(fs, link);
             }
-            // перемещение json'a из папки с приложением в рабочую папку
-            File.Move("./gitlink.json", dirTextBox.Text + @"/gitlink.json");
         }
 
         // получение сслыки на гитхаб из json'а
