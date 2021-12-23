@@ -3,15 +3,11 @@
 #include <clocale>
 #include <string>
 #include <iostream>
-#include <io.h>
-#include <fcntl.h>
 using namespace std;
 
 int main(int argc, char* argv[]) {
     
-    _setmode(_fileno(stdout), _O_U16TEXT);
-    _setmode(_fileno(stdin), _O_U16TEXT);
-    _setmode(_fileno(stderr), _O_U16TEXT);
+    setlocale(LC_ALL, "Russian");
 
     if (!system(NULL)) {
         puts("Командный процессор недоступен(что ты сделал, чтобы убрать его 0_0 ???)");
@@ -23,7 +19,7 @@ int main(int argc, char* argv[]) {
         cout << "Параметром является команда xcopy с флагами E и Y и двумя путями: \n";
         cout << "Сначала директорию, которую надо сохранять, а затем директорию, куда надо сохранять";
 
-        cout << "\nНажмите Enter для закрытия";
+        cout << "\nВведите что-либо для закрытия";
         string a;
         cin >> a;
     }
