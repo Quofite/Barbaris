@@ -75,29 +75,11 @@
      <string>Открыть GGC</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="openASBtn">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>150</y>
-      <width>191</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Открыть Backuper</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="openIDEBtn">
     <property name="geometry">
      <rect>
       <x>700</x>
-      <y>220</y>
+      <y>150</y>
       <width>191</width>
       <height>61</height>
      </rect>
@@ -115,7 +97,7 @@
     <property name="geometry">
      <rect>
       <x>700</x>
-      <y>290</y>
+      <y>220</y>
       <width>191</width>
       <height>61</height>
      </rect>
@@ -134,7 +116,7 @@
     <property name="geometry">
      <rect>
       <x>700</x>
-      <y>360</y>
+      <y>290</y>
       <width>191</width>
       <height>61</height>
      </rect>
@@ -153,7 +135,7 @@
     <property name="geometry">
      <rect>
       <x>700</x>
-      <y>430</y>
+      <y>360</y>
       <width>191</width>
       <height>61</height>
      </rect>

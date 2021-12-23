@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GitClient"
         mc:Ignorable="d"
-        Title="Git Client" Height="720" Width="1288">
+        Title="Git Client"
+        Height="720" Width="1288"
+        MinHeight="720" MinWidth="900">
     <Grid ShowGridLines="False" Background="#C0C0C0">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*"></RowDefinition>

@@ -3,12 +3,15 @@
 #include <clocale>
 #include <string>
 #include <iostream>
-#include <vector>
+#include <io.h>
+#include <fcntl.h>
 using namespace std;
 
 int main(int argc, char* argv[]) {
     
-    setlocale(LC_ALL, "");
+    _setmode(_fileno(stdout), _O_U16TEXT);
+    _setmode(_fileno(stdin), _O_U16TEXT);
+    _setmode(_fileno(stderr), _O_U16TEXT);
 
     if (!system(NULL)) {
         puts("Командный процессор недоступен(что ты сделал, чтобы убрать его 0_0 ???)");

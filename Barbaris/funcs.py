@@ -4,7 +4,7 @@ import json
 import traceback
 import subprocess
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, Qt
 from PyQt5.QtWidgets import QMessageBox, QFileDialog, QPushButton
 
 
@@ -40,17 +40,6 @@ def open_ggc_from_projs(arg):
 
 
 # ---------------------------------------------------------------
-# открыть backuper
-def open_backuper():
-    with open("pathes.json", 'r') as file:
-        path = json.load(file)
-
-    try:
-        subprocess.Popen([os.curdir + path['backuper']])
-    except Exception:
-        make_popup("Исключение", traceback.format_exc())
-
-
 # открыть backuper через открытие проекта
 def open_backuper_from_projs(workDir):
     with open("pathes.json", 'r') as file:
@@ -162,6 +151,9 @@ def show_projs(vbox):
             btn = QPushButton(text)
             btn.resize(400, 60)
             btn.clicked.connect(lambda: open_proj(row[1]))
+
+
+
             listWidgetItem = QtWidgets.QListWidgetItem()
             listWidgetItem.setSizeHint(btn.sizeHint())
             vbox.addItem(listWidgetItem)

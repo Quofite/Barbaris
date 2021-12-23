@@ -1,12 +1,14 @@
-﻿using System.Diagnostics;
+﻿using System;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
+using System.Text.Json;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+
 using Ookii.Dialogs.Wpf;
-using System;
+
 
 namespace GitClient {
 
@@ -29,6 +31,8 @@ namespace GitClient {
             }
         }
 
+        // ------------------------------------------------- МРАКОБЕСИЕ С JSON ---------------------------
+
         // получение ссылки на git репозиторий в json
         private async Task SetInJson(string workingDir, string gitlink) {
             // открытие json файла
@@ -49,6 +53,7 @@ namespace GitClient {
             }
         }
 
+        // ------------------------------------------------- ОТОБРАЖЕНИЕ ДИРЕКТОРИЙ И ФАЙЛОВ В GUI ------
 
         // получение папок и файлов в них
         private void GetDirs(string workingDir, int marginLeft) {
@@ -71,7 +76,7 @@ namespace GitClient {
                     GetDirs(dir, marginLeft + 30);
                     GetFiles(dir, marginLeft + 30);
                 }
-                else if (sp != ".git") {    // если это пакеты ноды, билды и т.п., то просто добавим их в гит, но без дочерних файлов/директорий
+                else if (sp != ".git") {    // если это пакеты ноды, билды и т.п., то просто добавим их в gui, но без дочерних файлов/директорий
                     CheckBox checkbox = new CheckBox { Content = sp, FontSize = 16, Height = 20, Margin = new Thickness(marginLeft, 10, 0, 0), IsChecked = true };
                     stackPanel.Children.Add(checkbox);
                 }
@@ -137,15 +142,16 @@ namespace GitClient {
 
                         procinfo.UseShellExecute = false;
                         Process.Start(procinfo);
+
+                        MessageBox.Show("Рабочая директория Git инициализирована в " + workingDir);
+                        gitStatusBar.Text = "Git инициализировaн";
+                        File.Create("./.gitignore");
+                        FileInfo batnik = new FileInfo("./gitinitscript.bat");
+                        batnik.Delete();
                     }
                     catch(Exception e) {
                         MessageBox.Show(e.Message);
-                    }
-                    MessageBox.Show("Рабочая директория Git инициализирована в " + workingDir);
-                    gitStatusBar.Text = "Git инициализировaн";
-                    File.Create("./.gitignore");
-                    FileInfo batnik = new FileInfo("./gitinitscript.bat");
-                    batnik.Delete();
+                    }                 
                 }
 
                 // получение папок и файлов из основного каталога
@@ -160,20 +166,30 @@ namespace GitClient {
 
         // git add
         private void gitAddBtn_Click(object sender, RoutedEventArgs e) {
-            File.WriteAllText("./gitadd.bat", $"cd /D {dirTextBox.Text} \n" + "git add . \n");
-            Process.Start("./gitadd.bat");
-            MessageBox.Show("Файлы успешно добавлены в ожидание");
-            FileInfo batnik = new FileInfo("./gitadd.bat");
-            batnik.Delete();
+            try {
+                File.WriteAllText("./gitadd.bat", $"cd /D {dirTextBox.Text} \n" + "git add . \n");
+                Process.Start("./gitadd.bat");
+                MessageBox.Show("Файлы успешно добавлены в ожидание");
+                FileInfo batnik = new FileInfo("./gitadd.bat");
+                batnik.Delete();
+            }
+            catch (Exception err) {
+                MessageBox.Show(err.Message);
+            }
         }
 
         // git commit
         private void gitCommitBtn_Click(object sender, RoutedEventArgs e) {
-            File.WriteAllText("./gitcommit.bat", $"cd /D {dirTextBox.Text} \n" + $"git commit -m \"{comment.Text}\" \n");
-            Process.Start("./gitcommit.bat");
-            MessageBox.Show("Файлы успешно отправлены в локальный репозиторий Git");
-            FileInfo batnik = new FileInfo("./gitcommit.bat");
-            batnik.Delete();
+            try {
+                File.WriteAllText("./gitcommit.bat", $"cd /D {dirTextBox.Text} \n" + $"git commit -m \"{comment.Text}\" \n");
+                Process.Start("./gitcommit.bat");
+                MessageBox.Show("Файлы успешно отправлены в локальный репозиторий Git");
+                FileInfo batnik = new FileInfo("./gitcommit.bat");
+                batnik.Delete();
+            }
+            catch (Exception err) {
+                MessageBox.Show(err.Message);
+            }
         }
 
         // git push
@@ -183,11 +199,16 @@ namespace GitClient {
                 return;
             }
 
-            File.WriteAllText("./gitpush.bat", $"cd /D {dirTextBox.Text} \n" + $"git remote add origin {gitLink.Text} \n" + "git push -u origin master \n");
-            Process.Start("./gitpush.bat");
-            MessageBox.Show("Файлы успешно загруженны на удаленный репозиторий");
-            FileInfo batnik = new FileInfo("./gitpush.bat");
-            batnik.Delete();
+            try {
+                File.WriteAllText("./gitpush.bat", $"cd /D {dirTextBox.Text} \n" + $"git remote add origin {gitLink.Text} \n" + "git push -u origin master \n");
+                Process.Start("./gitpush.bat");
+                MessageBox.Show("Файлы успешно загруженны на удаленный репозиторий");
+                FileInfo batnik = new FileInfo("./gitpush.bat");
+                batnik.Delete();
+            }
+            catch (Exception err) {
+                MessageBox.Show(err.Message);
+            }
         }
 
         // сохранение ссылки на гитхаб в json файле внутри рабочего каталога
