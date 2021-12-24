@@ -11,6 +11,8 @@ import {
 
 import launcherScreenshot from "../images/launcher.jpg"
 
+var MainPage;
+
 const HeadMainPage = () => (
     <Segment
         inverted
@@ -73,7 +75,7 @@ const ContentMainPage = () => (
     </Container>
 );
 
-export default () => (
+export default MainPage = () => (
     <main style={{ marginTop: "50px" }}>
         <HeadMainPage />
         <ContentMainPage />

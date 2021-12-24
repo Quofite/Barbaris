@@ -11,6 +11,8 @@ import {
 
 import launcherInstallerScreenshot from "../images/launcherInstaller.png";
 
+var DownloadPage;
+
 var links = {
     "stable": [
         "Not found",
@@ -125,7 +127,7 @@ const ContentDownloadPage = () => (
     </Container>
 );
 
-export default () => (
+export default DownloadPage = () => (
     <main style={{ marginTop: "50px" }}>
         <ButtonsDownloadPage />
         <ContentDownloadPage />
