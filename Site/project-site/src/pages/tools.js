@@ -124,7 +124,7 @@ class ContentToolsPage extends React.Component {
 export default ToolsPage = () => (
     <main>
         <Container>
-            <Grid>
+            <Grid stackable>
                 <ContentToolsPage />
             </Grid>
         </Container>
