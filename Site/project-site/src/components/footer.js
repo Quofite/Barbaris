@@ -6,7 +6,7 @@ import {
 const Footer = () => (
     <Segment inverted vertical style={{ padding: "1em 1em", marginTop: "2rem" }}>
         <Container>
-            <span>©</span>Doogls and Quofite, 2021.<br />
+            <span>©</span> Doogls and Quofite, 2021.<br />
             We we
         </Container>
     </Segment>

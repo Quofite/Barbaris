@@ -52,7 +52,7 @@ const HeadMainPage = () => (
 
 const ContentMainPage = () => (
     <Container id="HowToStart" style={{ marginTop: "2rem" }}>
-        <Grid>
+        <Grid stackable>
             <Grid.Column width={8}>
                 <Image src={launcherScreenshot} fluid />
             </Grid.Column>

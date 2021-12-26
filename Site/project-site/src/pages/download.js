@@ -21,7 +21,7 @@ var links = {
     ],
 
     "alpha": [
-        "0.0.1",
+        "0.0.2",
         { platform: "windows", icon: "windows", value: "https://github.com/Quofite/Barbaris/releases/download/alpha/BarbarisSetup.exe", text: "Windows" },
         { platform: "linux", icon: "linux", value: "", text: "Linux" },
     ],
@@ -105,7 +105,7 @@ const ButtonsDownloadPage = () => (
 
 const ContentDownloadPage = () => (
     <Container style={{ marginTop: "2rem" }}>
-        <Grid>
+        <Grid stackable>
             <Grid.Column width={8}>
                 <h1>
                     How to install
