@@ -163,7 +163,9 @@ def open_proj(path):
     open_ggc_from_projs(path)
     open_backuper_from_projs(path)
 
-#--------------------------------------
+
+# --------------------------------------
+"""
 def show_config_projs(vbox):
     vbox.listWidget.clear()
 
@@ -195,6 +197,7 @@ def delete_proj(thispath):
                     writer = csv.writer(interFile)
                     proj = [row[0], row[1]]
                     writer.writerow(proj)
+"""
 
 
 # ------------------------------------------ КОНФИГУРАТОР

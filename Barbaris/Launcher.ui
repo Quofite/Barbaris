@@ -193,6 +193,24 @@
      <string>Редактировать</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="updBtn">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>10</y>
+      <width>191</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Обновить</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

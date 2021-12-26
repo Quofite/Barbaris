@@ -1,3 +1,5 @@
+import subprocess
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 import funcs
@@ -69,6 +71,12 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.confProjsBtn.setFont(font)
         self.confProjsBtn.setObjectName("confProjsBtn")
+        self.updBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.updBtn.setGeometry(QtCore.QRect(410, 10, 191, 61))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.updBtn.setFont(font)
+        self.updBtn.setObjectName("updBtn")
         main_window.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(main_window)
@@ -87,6 +95,7 @@ class Ui_MainWindow(object):
         self.openPngIcoConBtn.setText(_translate("MainWindow", "Открыть png-ico\n"" конвертор"))
         self.openConfBtn.setText(_translate("MainWindow", "Открыть\n""конфигуратор путей"))
         self.confProjsBtn.setText(_translate("MainWindow", "Редактировать"))
+        self.updBtn.setText(_translate("MainWindow", "Обновить"))
 
     def functional(self):
         self.openGGCBtn.clicked.connect(funcs.open_ggc)
@@ -96,14 +105,19 @@ class Ui_MainWindow(object):
         self.openConfBtn.clicked.connect(self.show_config)
         self.confProjsBtn.clicked.connect(self.show_conf_projs)
         self.addProjBtn.clicked.connect(lambda: funcs.add_proj(self.centralwidget, self.projPane))
+        self.updBtn.clicked.connect(self.update_projs)
 
     def show_config(self):
         self.confWin = ConfigWindow()
         self.confWin.show()
 
-    def show_conf_projs(self):
-        self.confWin = ProjsConfigWindow()
-        self.confWin.show()
+    @staticmethod
+    def show_conf_projs():
+        subprocess.Popen(["notepad", "projects.csv"])
+
+    def update_projs(self):
+        self.projPane.clear()
+        funcs.show_projs(self.projPane)
 
 
 class Ui_pathConfig(object):
@@ -216,6 +230,7 @@ class Ui_pathConfig(object):
         self.convPath.setText(data['convertor'])
 
 
+"""
 class Ui_conf_projs_window(object):
     def setupUi(self, conf_projs_window):
         conf_projs_window.setObjectName("conf_projs_window")
@@ -243,6 +258,7 @@ class Ui_conf_projs_window(object):
         _translate = QtCore.QCoreApplication.translate
         conf_projs_window.setWindowTitle(_translate("conf_projs_window", "Удаление проектов"))
         self.label.setText(_translate("conf_projs_window", "Нажмите на проект, чтобы удалить его"))
+"""
 
 
 class ConfigWindow(QtWidgets.QMainWindow, Ui_pathConfig):
@@ -251,10 +267,12 @@ class ConfigWindow(QtWidgets.QMainWindow, Ui_pathConfig):
         self.setupUi(self)
 
 
+"""
 class ProjsConfigWindow(QtWidgets.QMainWindow, Ui_conf_projs_window):
     def __init__(self, parent=None):
         super(ProjsConfigWindow, self).__init__(parent)
         self.setupUi(self)
+"""
 
 
 if __name__ == "__main__":
