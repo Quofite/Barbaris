@@ -175,6 +175,24 @@
      <number>70</number>
     </property>
    </widget>
+   <widget class="QPushButton" name="confProjsBtn">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>10</y>
+      <width>191</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Редактировать</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

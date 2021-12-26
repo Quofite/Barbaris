@@ -1,6 +1,6 @@
-import funcs
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+
+import funcs
 
 
 class Ui_MainWindow(object):
@@ -32,32 +32,26 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.openGGCBtn.setFont(font)
         self.openGGCBtn.setObjectName("openGGCBtn")
-        self.openASBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.openASBtn.setGeometry(QtCore.QRect(700, 150, 191, 61))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        self.openASBtn.setFont(font)
-        self.openASBtn.setObjectName("openASBtn")
         self.openIDEBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.openIDEBtn.setGeometry(QtCore.QRect(700, 220, 191, 61))
+        self.openIDEBtn.setGeometry(QtCore.QRect(700, 150, 191, 61))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.openIDEBtn.setFont(font)
         self.openIDEBtn.setObjectName("openIDEBtn")
         self.openCalcBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.openCalcBtn.setGeometry(QtCore.QRect(700, 290, 191, 61))
+        self.openCalcBtn.setGeometry(QtCore.QRect(700, 220, 191, 61))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.openCalcBtn.setFont(font)
         self.openCalcBtn.setObjectName("openCalcBtn")
         self.openPngIcoConBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.openPngIcoConBtn.setGeometry(QtCore.QRect(700, 360, 191, 61))
+        self.openPngIcoConBtn.setGeometry(QtCore.QRect(700, 290, 191, 61))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.openPngIcoConBtn.setFont(font)
         self.openPngIcoConBtn.setObjectName("openPngIcoConBtn")
         self.openConfBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.openConfBtn.setGeometry(QtCore.QRect(700, 430, 191, 61))
+        self.openConfBtn.setGeometry(QtCore.QRect(700, 360, 191, 61))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.openConfBtn.setFont(font)
@@ -69,6 +63,12 @@ class Ui_MainWindow(object):
         self.projPane.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.projPane.setAlternatingRowColors(False)
         self.projPane.setObjectName("projPane")
+        self.confProjsBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.confProjsBtn.setGeometry(QtCore.QRect(210, 10, 191, 61))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.confProjsBtn.setFont(font)
+        self.confProjsBtn.setObjectName("confProjsBtn")
         main_window.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(main_window)
@@ -82,23 +82,27 @@ class Ui_MainWindow(object):
         main_window.setWindowTitle(_translate("MainWindow", "Barbaris Launcher"))
         self.addProjBtn.setText(_translate("MainWindow", "Добавить проект"))
         self.openGGCBtn.setText(_translate("MainWindow", "Открыть GGC"))
-        self.openASBtn.setText(_translate("MainWindow", "Открыть Backuper"))
         self.openIDEBtn.setText(_translate("MainWindow", "Открыть IDE"))
         self.openCalcBtn.setText(_translate("MainWindow", "Открыть\n""Калькулятор"))
         self.openPngIcoConBtn.setText(_translate("MainWindow", "Открыть png-ico\n"" конвертор"))
         self.openConfBtn.setText(_translate("MainWindow", "Открыть\n""конфигуратор путей"))
+        self.confProjsBtn.setText(_translate("MainWindow", "Редактировать"))
 
     def functional(self):
         self.openGGCBtn.clicked.connect(funcs.open_ggc)
-        self.openASBtn.clicked.connect(funcs.open_backuper)
         self.openIDEBtn.clicked.connect(funcs.open_ide)
         self.openCalcBtn.clicked.connect(funcs.open_calc)
         self.openPngIcoConBtn.clicked.connect(funcs.open_convertor)
         self.openConfBtn.clicked.connect(self.show_config)
+        self.confProjsBtn.clicked.connect(self.show_conf_projs)
         self.addProjBtn.clicked.connect(lambda: funcs.add_proj(self.centralwidget, self.projPane))
 
     def show_config(self):
         self.confWin = ConfigWindow()
+        self.confWin.show()
+
+    def show_conf_projs(self):
+        self.confWin = ProjsConfigWindow()
         self.confWin.show()
 
 
@@ -212,10 +216,44 @@ class Ui_pathConfig(object):
         self.convPath.setText(data['convertor'])
 
 
+class Ui_conf_projs_window(object):
+    def setupUi(self, conf_projs_window):
+        conf_projs_window.setObjectName("conf_projs_window")
+        conf_projs_window.resize(509, 421)
+        self.centralwidget = QtWidgets.QWidget(conf_projs_window)
+        self.centralwidget.setObjectName("centralwidget")
+        self.listWidget = QtWidgets.QListWidget(self.centralwidget)
+        self.listWidget.setGeometry(QtCore.QRect(0, 40, 511, 381))
+        self.listWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.listWidget.setObjectName("listWidget")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(10, 10, 341, 21))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        conf_projs_window.setCentralWidget(self.centralwidget)
+
+        self.retranslateUi(conf_projs_window)
+        QtCore.QMetaObject.connectSlotsByName(conf_projs_window)
+        funcs.show_config_projs(self.listWidget)
+
+    def retranslateUi(self, conf_projs_window):
+        _translate = QtCore.QCoreApplication.translate
+        conf_projs_window.setWindowTitle(_translate("conf_projs_window", "Удаление проектов"))
+        self.label.setText(_translate("conf_projs_window", "Нажмите на проект, чтобы удалить его"))
+
+
 class ConfigWindow(QtWidgets.QMainWindow, Ui_pathConfig):
     def __init__(self, parent=None):
         super(ConfigWindow, self).__init__(parent)
+        self.setupUi(self)
 
+
+class ProjsConfigWindow(QtWidgets.QMainWindow, Ui_conf_projs_window):
+    def __init__(self, parent=None):
+        super(ProjsConfigWindow, self).__init__(parent)
         self.setupUi(self)
 
 

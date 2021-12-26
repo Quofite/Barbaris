@@ -4,7 +4,7 @@ import json
 import traceback
 import subprocess
 
-from PyQt5 import QtWidgets, Qt
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QFileDialog, QPushButton
 
 
@@ -151,9 +151,6 @@ def show_projs(vbox):
             btn = QPushButton(text)
             btn.resize(400, 60)
             btn.clicked.connect(lambda: open_proj(row[1]))
-
-
-
             listWidgetItem = QtWidgets.QListWidgetItem()
             listWidgetItem.setSizeHint(btn.sizeHint())
             vbox.addItem(listWidgetItem)
@@ -165,6 +162,39 @@ def open_proj(path):
     open_ide_from_projs(path)
     open_ggc_from_projs(path)
     open_backuper_from_projs(path)
+
+#--------------------------------------
+def show_config_projs(vbox):
+    vbox.listWidget.clear()
+
+    with open("projects.csv", 'r', newline='') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            thisname = row[0]
+            thispath = row[1]
+
+            print(thisname, thispath)
+
+            text = "{name} ({path})".format(name=thisname, path=thispath)
+            btn = QPushButton(text)
+            btn.resize(400, 60)
+            btn.clicked.connect(lambda: delete_proj(thispath))
+            listWidgetItem = QtWidgets.QListWidgetItem()
+            listWidgetItem.setSizeHint(btn.sizeHint())
+            vbox.addItem(listWidgetItem)
+            vbox.setItemWidget(listWidgetItem, btn)
+
+
+def delete_proj(thispath):
+    print(thispath)
+    with open("projects.csv", 'r', newline='') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            with open("inter.csv", 'a', newline='') as interFile:
+                if row[1] != thispath:
+                    writer = csv.writer(interFile)
+                    proj = [row[0], row[1]]
+                    writer.writerow(proj)
 
 
 # ------------------------------------------ КОНФИГУРАТОР
