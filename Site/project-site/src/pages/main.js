@@ -1,12 +1,19 @@
+import { Link } from "react-router-dom";
 import {
   Button,
   Container,
   Icon,
   Header,
   Segment,
-} from 'semantic-ui-react'
+  Grid,
+  Image,
+} from "semantic-ui-react"
 
-const MainPage = () => (
+import launcherScreenshot from "../images/launcher.jpg"
+
+var MainPage;
+
+const HeadMainPage = () => (
     <Segment
         inverted
         textAlign="center"
@@ -35,12 +42,42 @@ const MainPage = () => (
                     marginTop: "1.5em",
                 }}
             />
-            <Button primary size="huge">
+            <Button primary size="huge" href="#HowToStart">
                 Get started
                 <Icon name="right arrow" />
             </Button>
         </Container>
     </Segment>
+)
+
+const ContentMainPage = () => (
+    <Container id="HowToStart" style={{ marginTop: "2rem" }}>
+        <Grid>
+            <Grid.Column width={8}>
+                <Image src={launcherScreenshot} fluid />
+            </Grid.Column>
+
+            <Grid.Column width={8}>
+                <h1>
+                    Software for modern developers
+                </h1>
+
+                <p style={{ fontSize: "1.7em" }}>
+                    Software to simplify development. It has great functionality.
+                </p>
+
+                <Button color="green" size="big" as={Link} to="/download">
+                    Download
+                    <Icon name="right arrow" />
+                </Button>
+            </Grid.Column>
+        </Grid>
+    </Container>
 );
 
-export default MainPage;
+export default MainPage = () => (
+    <main style={{ marginTop: "50px" }}>
+        <HeadMainPage />
+        <ContentMainPage />
+    </main>
+);
