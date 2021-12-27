@@ -2,13 +2,8 @@
 /Backuper/Debug
 /Backuper/Backuper/Debug
 
-/Barbaris/venv
-/Barbaris/build
-/Barbaris/dist
-/Barbaris/__pycache__
-/barbaris/.idea
-/Barbaris/Backuper.exe
-/Barbaris/main.exe
+/Barbaris/node_modules
+/Barbaris/package_json
 
 /BarbarisSetup
 

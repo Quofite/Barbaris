@@ -1,0 +1,15 @@
+{
+  "name": "barbaris",
+  "version": "0.0.1",
+  "description": "barbaris launcher",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Gleb Nikitin",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "electron": "^16.0.5"
+  }
+}
