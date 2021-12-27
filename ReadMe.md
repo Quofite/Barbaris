@@ -12,8 +12,8 @@ Barbaris - это сборка приложений для упрощения р
 <hr>
 
 ### Barbaris Launcher
-![](https://img.shields.io/badge/Code-Python-informational?style=flat-square&logo=python&logoColor=white&color=5194f0)
-![](https://img.shields.io/badge/Framework-PyQt5-informational?style=flat-square&logo=qt&logoColor=white&color=5194f0)<br>
+![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat-square&logo=javascript&logoColor=white&color=5194f0)
+![](https://img.shields.io/badge/Framework-Electron.js-informational?style=flat-square&logo=electron&logoColor=white&color=5194f0)<br>
 ![barbaris-main](https://sun9-41.userapi.com/impg/ovMec8wDaxnmX5xwj5zj7hRmCF_dKkIJSO8QPA/1_cEkAAOy-U.jpg?size=899x600&quality=96&sign=86046c1915b8b0415916c0549f9c9e41&type=album)<br>
 Прошу любить и жаловать - лаунчер!<br>
 Возможно, он не самый красивый и интуитивно понятный, но зато какой функциональный.<br>
