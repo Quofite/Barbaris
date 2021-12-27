@@ -211,6 +211,30 @@ namespace GitClient {
             }
         }
 
+
+        private void gitPullBtn_Click(object sender, RoutedEventArgs e) {
+            if (gitLink.Text == string.Empty) {
+                MessageBox.Show("Нет ссылки на репозиторий");
+                return;
+            }
+
+            try {
+                File.WriteAllText("./gitpull.bat", $"cd /D {dirTextBox.Text} \n" + "git pull \n");
+                Process.Start("./gitpull.bat");
+                MessageBox.Show("Файлы успешно загруженны из удаленного репозитория");
+                FileInfo batnik = new FileInfo("./gitpull.bat");
+                batnik.Delete();
+
+                stackPanel.Children.Clear();
+                GetDirs(dirTextBox.Text, 10);
+                GetFiles(dirTextBox.Text, 10);
+            }
+            catch (Exception err) {
+                //MessageBox.Show(err.Message);
+                MessageBox.Show(err.StackTrace);
+            }
+        }
+
         // сохранение ссылки на гитхаб в json файле внутри рабочего каталога
         private void saveLinkBtn_Click(object sender, RoutedEventArgs e) {
             SetInJson(dirTextBox.Text, gitLink.Text);
