@@ -1,0 +1,118 @@
+@font-face {
+	font-family: "Inter"; 
+	src: url("./dist/fonts/Inter/Inter-Regular.ttf");
+}
+
+@font-face {
+	font-family: "Inter";
+	font-weight: bold;
+	src: url("./dist/fonts/Inter/Inter-Bold.ttf");
+}
+
+*:not(i) {
+    font-family: "Inter" !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
+    transition: .1s;
+    color: #212529;
+}
+
+a:hover {
+    color: #212529;
+    opacity: .7;
+}
+
+a .grey {
+    color: grey;
+}
+
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.primary {
+    background-color:rgb(14, 165, 233) !important;
+    color: white !important;
+}
+
+.primary:hover {
+    opacity: .8;
+    /*border: 2px solid black !important;*/
+}
+
+.fluid {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.button {
+    padding: .6em;
+    border: 0;
+    border-radius: .6em;
+    transition: .2s;
+    margin: .2em;
+    box-shadow: 0 2px 6px 0 rgba(34,36,38,.15) !important;
+    border: 2px solid transparent;
+}
+
+.button:hover {
+    border: 2px solid black;
+}
+
+.buttons {
+    display: block;
+}
+
+.buttons .button:first-child {
+    margin-top: 0;
+}
+
+.buttons .button {
+    margin-top: .2em;
+}
+
+.card {
+    padding: .6em;
+    border-radius: .6em;
+    box-shadow: 0 2px 6px 0 rgba(34,36,38,.15) !important;
+    transition: .2s;
+    border: 2px solid transparent;
+}
+
+.card:hover {
+    border: 2px solid black;
+}
+
+.card header {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.card header span {
+    font-size: 14px;
+    color: grey;
+}
+
+.card footer a {
+    color: rgb(90, 90, 90);
+    margin-right: .2em;
+}
+
+.cards {
+    display: block;
+}
+
+.cards .card:not(:first-child) {
+    margin-top: .6em;
+}

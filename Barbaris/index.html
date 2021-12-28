@@ -5,28 +5,94 @@
     <meta charset="utf-8">
     <title>Barbaris</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"-->
+    <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"-->
+    <link href="./dist/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <!-- этот блок должен быть прибит к левому краю, т.к. здесь будут проекты -->
-    <div name="projectsPane" class="container" style="border: 1px solid black; position: absolute; left: 0; width: 75%; overflow-y: scroll;">
-      
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8">
+                <div class="cards">
+                    <div class="card">
+                        <header>
+                            React Barbaris <span class="grey">E:\Projects\React</span>
+                        </header>
+
+                        <content>
+                            React Barbaris
+                        </content>
+
+                        <footer>
+                            <a href="#">
+                                Start React App
+                            </a>
+
+                            <a href="#">
+                                Open project folder
+                            </a>
+
+                            <a href="#">
+                                Open project in IDE
+                            </a>
+                        </footer>
+                    </div>
+
+                    <div class="card">
+                        <header>
+                            Barbaris
+                        </header>
+
+                        <content>
+                            Barbaris C# project
+                        </content>
+
+                        <footer>
+                            <!--a href="#">
+                                Start React App
+                            </a-->
+
+                            <a href="#">
+                                Open project folder
+                            </a>
+
+                            <a href="#">
+                                Open project in IDE
+                            </a>
+                        </footer>
+                    </div>
+
+                    <a class="card" style="align-items: center;" href="#">
+                        <content>
+                            <i class="bi bi-plus"></i>
+                            New project
+                        </content>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="buttons">
+                    <button class="primary button fluid">
+                        Open IDE
+                    </button>
+
+                    <button class="primary button fluid">
+                        Open Calculator
+                    </button>
+
+                    <button class="primary button fluid">
+                        Open folders configurator
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- этот блок будет сверху справа и имеет кнопки для работы с проектами -->
-    <div name="projectsButtonsPane" class="container" style="border: 1px solid black; position: absolute; right: 0; height: 20%; width: 25%;">
-      <button class="btn btn-primary" style="position: absolute; width: 90%;">Добавить проект</button><br><br>
-      <button class="btn btn-primary" style="position: absolute; width: 90%;">Редактировать проекты</button>
-    </div>
-
-    <!-- этот блок будет снизу справа и имеет кнопки для открытия и конфигурации приложений -->
-    <div name="appsButtonsPane" class="container" style="border: 1px solid black; position: absolute; right: 0; bottom: 0; height: 80%; width: 25%;">
-      <br>
-      <button class="btn btn-primary" style="position: absolute; width: 90%;">Открыть Git Client</button><br><br>
-      <button class="btn btn-primary" style="position: absolute; width: 90%;">Открыть IDE</button><br><br>
-      <button class="btn btn-primary" style="position: absolute; width: 90%;">Открыть Конвертор</button><br><br>
-      <button class="btn btn-primary" style="position: absolute; width: 90%;">Открыть Конфигуратор</button>
-    </div>
-
-    <script src='./renderer.js'></script>
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script-->
   </body>
 </html>
