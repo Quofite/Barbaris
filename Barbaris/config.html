@@ -13,51 +13,44 @@
 </head>
 <body>
     <div class="container-fluid">
-        <form name="pathesForm">
-            <div class="mb-3">
-                <label for="idePathField" class="form-label">Path to IDE</label>
-                <input type="text" class="form-control" id="idePathField">
-            </div>
+        <div class="mb-3">
+            <label for="idePathField" class="form-label">Путь к IDE</label>
+            <input type="text" class="form-control" id="idePathField">
+        </div>
 
-            <div class="mb-3">
-                <label for="ggcPathField" class="form-label">Path to Git Client</label>
-                <input type="text" class="form-control" id="ggcPathField">
-            </div>
+        <div class="mb-3">
+            <label for="ggcPathField" class="form-label">Путь к Git Client</label>
+            <input type="text" class="form-control" id="ggcPathField">
+        </div>
 
-            <div class="mb-3">
-                <label for="convPathField" class="form-label">Path to Image Convertor</label>
-                <input type="text" class="form-control" id="convPathField">
-            </div>
+        <div class="mb-3">
+            <label for="convPathField" class="form-label">Путь к Конвертору</label>
+            <input type="text" class="form-control" id="convPathField">
+        </div>
 
-            <div class="mb-3">
-                <label for="backuperPathField" class="form-label">Path to Backuper</label>
-                <input type="text" class="form-control" id="backuperPathField">
-            </div>
+        <div class="mb-3">
+            <label for="backuperPathField" class="form-label">Путь к Бекаперу</label>
+            <input type="text" class="form-control" id="backuperPathField">
+        </div>
 
-            <div class="primary fluid button" id="saveBtn">
-                <i class="bi bi-save"></i>
-                Save
-            </div>
-        </form>
+        <div class="primary fluid button" id="saveBtn">
+            <i class="bi bi-save"></i>
+            Сохранить
+        </div>
     </div>
 
-    <script src="./renderer.js"></script>
+    <script src="./confrenderer.js"></script>
+
     <script>
-        document.getElementById("saveBtn").addEventListener("click", () => {
-            let form = document.forms["pathesForm"];
-            let idePath = form.elements["idePathField"].value;
-            let ggcPath = form.elements["ggcPathField"].value;
-            let convPath = form.elements["convPathField"].value;
-            let backuperPath = form.elements["backuperPathField"].value;
+        const fs = require("fs");
 
-            let pathes = JSON.stringify({
-                ide: idePath,
-                ggc: ggcPath,
-                convertor: convPath,
-                backuper: backuperPath
-            });
-        });
+        let pathesJsonContent = fs.readFileSync("pathes.json", "utf8");
+        let parsed = JSON.parse(pathesJsonContent);
 
+        document.getElementById("idePathField").value = parsed.ide;
+        document.getElementById("ggcPathField").value = parsed.ggc;
+        document.getElementById("convPathField").value = parsed.convertor;
+        document.getElementById("backuperPathField").value = parsed.backuper;
     </script>
 </body>
 </html>

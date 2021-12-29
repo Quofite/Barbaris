@@ -86,9 +86,10 @@ app.on("window-all-closed", () => {
 
 
 // ----------------------
+var confWindow;
 
 ipcMain.on("create-conf-window", (e) => {
-    const confWindow = new BrowserWindow({
+    confWindow = new BrowserWindow({
         width: 700,
         height: 500,
         title: "Barbaris",
@@ -105,4 +106,8 @@ ipcMain.on("create-conf-window", (e) => {
     confWindow.removeMenu();
 
     confWindow.webContents.openDevTools();
+});
+
+ipcMain.on("saved", (e) => {
+    confWindow.close();
 });

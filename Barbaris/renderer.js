@@ -1,11 +1,24 @@
 document.querySelector('#openIdeBtn').addEventListener('click', () => {
-    //openIDE();
+    var exec = require('child_process').execFile;
+    const fs = require("fs");
+
+    let pathesJsonContent = fs.readFileSync("pathes.json", "utf8");
+    let parsed = JSON.parse(pathesJsonContent);
+
+    exec(parsed.ide, function(err, data) {  
+        console.log(err)
+        console.log(data.toString());                       
+    });
 });
 
 document.querySelector('#openGgcBtn').addEventListener('click', () => {
     var exec = require('child_process').execFile;
+    const fs = require("fs");
 
-    exec('C:\\Users\\marga\\Desktop\\Barbaris\\GitClient.exe', function(err, data) {  
+    let pathesJsonContent = fs.readFileSync("pathes.json", "utf8");
+    let parsed = JSON.parse(pathesJsonContent);
+
+    exec(parsed.ggc, function(err, data) {  
         console.log(err)
         console.log(data.toString());                       
     });
@@ -18,8 +31,12 @@ document.querySelector('#openConfigBtn').addEventListener('click', () => {
 
 document.querySelector('#openConvBtn').addEventListener('click', () => {
     var exec = require('child_process').execFile;
+    const fs = require("fs");
 
-    exec('C:\\Users\\marga\\Desktop\\Barbaris\\convertor\\Convertor.exe', function(err, data) {  
+    let pathesJsonContent = fs.readFileSync("pathes.json", "utf8");
+    let parsed = JSON.parse(pathesJsonContent);
+
+    exec(parsed.convertor, function(err, data) {  
         console.log(err)
         console.log(data.toString());                       
     });
