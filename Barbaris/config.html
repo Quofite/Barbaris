@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конфигуратор путей</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="mt-5 container">
+        <form name="pathesForm">
+            <input type="text" name="idePathField" placeholder="ПУТЬ К IDE" class="form-control"><br>
+            <input type="text" name="ggcPathField" placeholder="ПУТЬ К GIT CLIENT" class="form-control"><br>
+            <input type="text" name="convPathField" placeholder="ПУТЬ К КОНВЕРТОРУ" class="form-control"><br>
+            <input type="text" name="backuperPathField" placeholder="ПУТЬ К БЕКАПЕРУ" class="form-control"><br>
+            <input type="button" id="saveBtn" value="Сохранить" class="btn btn-primary">
+        </form>
+    </div>
+
+    <script src="./renderer.js"></script>
+    <script>
+        document.getElementById("saveBtn").addEventListener("click", () => {
+            let form = document.forms["pathesForm"];
+            let idePath = form.elements["idePathField"].value;
+            let ggcPath = form.elements["ggcPathField"].value;
+            let convPath = form.elements["convPathField"].value;
+            let backuperPath = form.elements["backuperPathField"].value;
+
+            let pathes = JSON.stringify({
+                ide: idePath,
+                ggc: ggcPath,
+                convertor: convPath,
+                backuper: backuperPath
+            });
+        });
+
+    </script>
+</body>
+</html>

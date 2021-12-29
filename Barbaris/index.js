@@ -4,7 +4,8 @@ const {
     app, 
     BrowserWindow,
     Tray,
-    Menu
+    Menu,
+    ipcMain
 } = require("electron");
 
 var mainWindow;
@@ -15,7 +16,11 @@ app.on("ready", () => {
         title: "Barbaris",
         icon: "Barbaris.ico",
         minWidth: 750,
-        minHeight: 450
+        minHeight: 450,
+        webPreferences:{
+            contextIsolation: false,
+            nodeIntegration: true
+        }
     });
 
     mainWindow.loadURL(url.format({
@@ -24,8 +29,11 @@ app.on("ready", () => {
         slashes: true
     }));
 
-    //mainWindow.webContents.openDevTools();
+    mainWindow.removeMenu();
 
+    mainWindow.webContents.openDevTools();
+
+    /*
     mainWindow.on("minimize", (event) => {
         event.preventDefault();
 
@@ -45,9 +53,10 @@ app.on("ready", () => {
     
         return false;
     });
+    */
 });
 
-const newTray = () => {
+/*const newTray = () => {
     let tray = new Tray("Barbaris.ico")
     tray.setToolTip("Barbaris")
     tray.setContextMenu(Menu.buildFromTemplate([
@@ -65,11 +74,34 @@ const newTray = () => {
             }
         }
     ]))
-}
+}*/
 
 /*app.whenReady().then(() => {
 })*/
 
 app.on("window-all-closed", () => {
     app.quit(); 
+});
+
+
+
+// ----------------------
+
+ipcMain.on("create-conf-window", (e) => {
+    const confWindow = new BrowserWindow({
+        width: 600,
+        height: 400,
+        title: "Barbaris",
+        icon: "Barbaris.ico",
+        webPreferences:{
+            contextIsolation: false,
+            nodeIntegration: true
+        }
+    });
+
+    confWindow.loadFile("config.html");
+
+    confWindow.removeMenu();
+
+    confWindow.webContents.openDevTools();
 });
