@@ -89,10 +89,11 @@ app.on("window-all-closed", () => {
 
 ipcMain.on("create-conf-window", (e) => {
     const confWindow = new BrowserWindow({
-        width: 600,
-        height: 400,
+        width: 700,
+        height: 500,
         title: "Barbaris",
         icon: "Barbaris.ico",
+        resizable: false,
         webPreferences:{
             contextIsolation: false,
             nodeIntegration: true

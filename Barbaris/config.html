@@ -5,16 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Конфигуратор путей</title>
+
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    
+    <link href="./dist/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="mt-5 container">
+    <div class="container-fluid">
         <form name="pathesForm">
-            <input type="text" name="idePathField" placeholder="ПУТЬ К IDE" class="form-control"><br>
-            <input type="text" name="ggcPathField" placeholder="ПУТЬ К GIT CLIENT" class="form-control"><br>
-            <input type="text" name="convPathField" placeholder="ПУТЬ К КОНВЕРТОРУ" class="form-control"><br>
-            <input type="text" name="backuperPathField" placeholder="ПУТЬ К БЕКАПЕРУ" class="form-control"><br>
-            <input type="button" id="saveBtn" value="Сохранить" class="btn btn-primary">
+            <div class="mb-3">
+                <label for="idePathField" class="form-label">Path to IDE</label>
+                <input type="text" class="form-control" id="idePathField">
+            </div>
+
+            <div class="mb-3">
+                <label for="ggcPathField" class="form-label">Path to Git Client</label>
+                <input type="text" class="form-control" id="ggcPathField">
+            </div>
+
+            <div class="mb-3">
+                <label for="convPathField" class="form-label">Path to Image Convertor</label>
+                <input type="text" class="form-control" id="convPathField">
+            </div>
+
+            <div class="mb-3">
+                <label for="backuperPathField" class="form-label">Path to Backuper</label>
+                <input type="text" class="form-control" id="backuperPathField">
+            </div>
+
+            <div class="primary fluid button" id="saveBtn">
+                <i class="bi bi-save"></i>
+                Save
+            </div>
         </form>
     </div>
 

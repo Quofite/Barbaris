@@ -1,12 +1,12 @@
 @font-face {
 	font-family: "Inter"; 
-	src: url("./dist/fonts/Inter/Inter-Regular.ttf");
+	src: url("./fonts/Inter/Inter-Regular.ttf");
 }
 
 @font-face {
 	font-family: "Inter";
 	font-weight: bold;
-	src: url("./dist/fonts/Inter/Inter-Bold.ttf");
+	src: url("./fonts/Inter/Inter-Bold.ttf");
 }
 
 *:not(i) {
@@ -58,12 +58,23 @@ a .grey {
 
 .button {
     padding: .6em;
-    border: 0;
     border-radius: .6em;
     transition: .2s;
     margin: .2em;
+    text-align: center;
     box-shadow: 0 2px 6px 0 rgba(34,36,38,.15) !important;
     border: 2px solid transparent;
+}
+
+input[type="text"] {
+    padding: .6em;
+    border-radius: .6em;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 6px 0 rgba(34,36,38,.15) !important;
+}
+
+input[type="text"]:focus {
+    border: 2px solid black;
 }
 
 .button:hover {
