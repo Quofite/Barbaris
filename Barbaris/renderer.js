@@ -2,6 +2,13 @@
 const { ipcRenderer } = require("electron");
 
 
+/* 
+
+ЛЕХА, РАДИ ВСЕГО СВЯТОГО - НЕ ЛЕЗЬ СЮДА
+
+*/
+
+
 // --------------------------------------------------------------Кнопки слева
 // Открыть IDE
 document.querySelector("#openIDE").addEventListener("click", () => {

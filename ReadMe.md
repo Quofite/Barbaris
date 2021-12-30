@@ -14,7 +14,7 @@ Barbaris - это сборка приложений для упрощения р
 ### Barbaris Launcher
 ![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat-square&logo=javascript&logoColor=white&color=5194f0)
 ![](https://img.shields.io/badge/Framework-Electron.js-informational?style=flat-square&logo=electron&logoColor=white&color=5194f0)<br>
-![barbaris-main](https://sun9-41.userapi.com/impg/ovMec8wDaxnmX5xwj5zj7hRmCF_dKkIJSO8QPA/1_cEkAAOy-U.jpg?size=899x600&quality=96&sign=86046c1915b8b0415916c0549f9c9e41&type=album)<br>
+![barbaris-main](https://sun9-25.userapi.com/impg/SBhKB7JnDtNxbBpJhk8scJ3bSNyCJxghmPDpOQ/0riemIjnEv8.jpg?size=1381x571&quality=96&sign=ab123b6eaefcde4cf9e9c28cfbf520be&type=album)<br>
 Прошу любить и жаловать - лаунчер!<br>
 Возможно, он не самый красивый и интуитивно понятный, но зато какой функциональный.<br>
 
@@ -24,7 +24,7 @@ Barbaris - это сборка приложений для упрощения р
 папке Barbaris. После нажатия на проект, он откроет IDE, которую вы установили (об этом чуть позже), сохранит все файлы, как резервную копию и откроет Ваш проект в Графическом клиенте GIT.
 
 ### Немного о конфигураторе путей
-![path-config](https://sun9-82.userapi.com/impg/X2i3XQnbWEVbTdtDBZ8Ijsx5QmPvmFFW29pfjQ/SeiBE0smfWQ.jpg?size=455x287&quality=96&sign=2305300e7f9d7f90e8ec417d4e1d17ba&type=album)<br>
+![path-config](https://sun9-88.userapi.com/impg/-lggmQvuQGhIgl6riQ6s8P1h-YudqKUnFumGIQ/YGZhR14v3aQ.jpg?size=692x493&quality=96&sign=cae9ccb5a7afe8aa0bcc5a15a72b247a&type=album)<br>
 Это маленькое, но очень полезное окошко поможет Вам установить все директории для приложений, нужных для
 работы Barbaris. По умолчанию, тут уже прописаны все пути, кроме IDE, которую Вы должны установить сами, в
 зависимости от Ваших предпочтений. Остальные пути Вы тоже можете изменить, если все приложения у Вас лежат
