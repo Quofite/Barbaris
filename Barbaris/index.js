@@ -7,13 +7,14 @@ const {
     Menu,
     ipcMain
 } = require("electron");
+const { electron } = require("process");
 
-/* Main Window */
+// Главное окно
 var mainWindow;
 app.on("ready", () => {
     mainWindow = new BrowserWindow({
-        width: 950,
-        height: 600,
+        width: 1400,
+        height: 800,
         title: "Barbaris",
         icon: "Barbaris.ico",
         minWidth: 800,
@@ -84,7 +85,7 @@ app.on("window-all-closed", () => {
     app.quit(); 
 });
 
-// Config window
+// Окно конфига
 var configWindow;
 ipcMain.on("openConfig", (e) => {
     configWindow = new BrowserWindow({
@@ -108,4 +109,14 @@ ipcMain.on("openConfig", (e) => {
 
 ipcMain.on("saved", (e) => {
     configWindow.close();
+});
+
+let directory;
+ipcMain.on("selectDirectory", (e) => {
+    const { dialog } = require("electron");
+    directory = dialog.showOpenDialogSync(mainWindow, {
+        properties: ['openDirectory']
+    });
+
+    e.sender.send("got-directory", directory);
 });

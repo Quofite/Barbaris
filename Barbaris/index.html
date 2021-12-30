@@ -14,24 +14,27 @@
     <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"-->
     <link href="./dist/style.css" rel="stylesheet" type="text/css" />
   </head>
-  <body>
+  <body onload="showProjs()">
     <div class="container-fluid">
       <div class="row">
         <div class="col-8">
-          <div class="cards">
-            <a class="card" style="align-items: center;" href="#">
+          <div class="cards" id="mainBlock">
+            <a class="card" style="align-items: center;" href="#" id="newProjBtn">
               <content>
                 <i class="bi bi-plus"></i>
                 Новый проект
               </content>
             </a>
 
+            <!--
             <div class="card">
                <header>
                 React Barbaris <span class="grey">E:\Projects\React</span> 
-                <div class="dropdown" style="width: 36px;">
-                  <div class="round button dropdown-toggle" style="min-width: 100% !important;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></div>
                 
+                <div class="dropdown" style="width: 36px;">
+                  
+                  <div class="round button dropdown-toggle" style="min-width: 100% !important;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></div>
+                  
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li>
                       <a class="dropdown-item" href="#">Action</a>
@@ -46,6 +49,7 @@
                     </li>
                   </ul>
                 </div>
+                 
               </header>
 
               <content>
@@ -63,29 +67,7 @@
                   Открыть проект в IDE
                 </a>
               </footer>
-            </div>
-
-            <div class="card">
-              <header>
-                Barbaris
-              </header>
-
-              <content>
-                Barbaris C# project
-              </content>
-
-              <footer>
-                <a href="#">
-                  <i class="bi bi-folder-symlink"></i>
-                  Открыть папку проекта
-                </a>
-
-                <a href="#">
-                  <i class="bi bi-box-arrow-up-left"></i>
-                  Открыть проект в IDE
-                </a>
-              </footer>
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -99,12 +81,14 @@
               Открыть Git Client
             </button>
 
-            <button class="primary button fluid" id="openConfig">
-              Открыть конфигуратор
-            </button>
-
             <button class="primary button fluid" id="openConverter">
               Открыть конвертор
+            </button>
+
+            <hr>
+
+            <button class="primary button fluid" id="openConfig">
+              Открыть конфигуратор
             </button>
           </div>
         </div>
