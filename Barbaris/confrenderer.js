@@ -1,10 +1,9 @@
-document.querySelector("#saveBtn").addEventListener("click", () => {
-    const fs = require("fs");
+document.querySelector("#save").addEventListener("click", () => {
     const { ipcRenderer } = require("electron");
 
     let idePath = document.getElementById("idePathField").value;
-    let ggcPath = document.getElementById("ggcPathField").value;
-    let convPath = document.getElementById("convPathField").value;
+    let ggcPath = document.getElementById("gitPathField").value;
+    let convPath = document.getElementById("converterPathField").value;
     let backuperPath = document.getElementById("backuperPathField").value;
 
     let pathes = JSON.stringify({
@@ -16,7 +15,7 @@ document.querySelector("#saveBtn").addEventListener("click", () => {
 
     console.log(pathes);
 
-    fs.writeFile("pathes.json", pathes, (error) => {
+    require("fs").writeFile("pathes.json", pathes, (error) => {
         if(error) throw error;
     });
 

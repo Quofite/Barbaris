@@ -19,13 +19,13 @@
         </div>
 
         <div class="mb-3">
-            <label for="ggcPathField" class="form-label">Путь к Git Client</label>
-            <input type="text" class="form-control" id="ggcPathField">
+            <label for="gitPathField" class="form-label">Путь к Git Client</label>
+            <input type="text" class="form-control" id="gitPathField">
         </div>
 
         <div class="mb-3">
-            <label for="convPathField" class="form-label">Путь к Конвертору</label>
-            <input type="text" class="form-control" id="convPathField">
+            <label for="converterPathField" class="form-label">Путь к Конвертору</label>
+            <input type="text" class="form-control" id="converterPathField">
         </div>
 
         <div class="mb-3">
@@ -33,7 +33,7 @@
             <input type="text" class="form-control" id="backuperPathField">
         </div>
 
-        <div class="primary fluid button" id="saveBtn">
+        <div class="primary fluid button" id="save">
             <i class="bi bi-save"></i>
             Сохранить
         </div>
@@ -42,14 +42,12 @@
     <script src="./confrenderer.js"></script>
 
     <script>
-        const fs = require("fs");
-
-        let pathesJsonContent = fs.readFileSync("pathes.json", "utf8");
+        let pathesJsonContent = require("fs").readFileSync("pathes.json", "utf8");
         let parsed = JSON.parse(pathesJsonContent);
 
         document.getElementById("idePathField").value = parsed.ide;
-        document.getElementById("ggcPathField").value = parsed.ggc;
-        document.getElementById("convPathField").value = parsed.convertor;
+        document.getElementById("gitPathField").value = parsed.ggc;
+        document.getElementById("converterPathField").value = parsed.convertor;
         document.getElementById("backuperPathField").value = parsed.backuper;
     </script>
 </body>

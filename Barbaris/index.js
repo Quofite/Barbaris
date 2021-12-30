@@ -8,6 +8,7 @@ const {
     ipcMain
 } = require("electron");
 
+/* Main Window */
 var mainWindow;
 app.on("ready", () => {
     mainWindow = new BrowserWindow({
@@ -15,7 +16,7 @@ app.on("ready", () => {
         height: 600,
         title: "Barbaris",
         icon: "Barbaris.ico",
-        minWidth: 750,
+        minWidth: 800,
         minHeight: 450,
         webPreferences:{
             contextIsolation: false,
@@ -83,13 +84,10 @@ app.on("window-all-closed", () => {
     app.quit(); 
 });
 
-
-
-// ----------------------
-var confWindow;
-
-ipcMain.on("create-conf-window", (e) => {
-    confWindow = new BrowserWindow({
+// Config window
+var configWindow;
+ipcMain.on("openConfig", (e) => {
+    configWindow = new BrowserWindow({
         width: 700,
         height: 500,
         title: "Barbaris",
@@ -101,13 +99,13 @@ ipcMain.on("create-conf-window", (e) => {
         }
     });
 
-    confWindow.loadFile("config.html");
+    configWindow.loadFile("config.html");
 
-    confWindow.removeMenu();
+    configWindow.removeMenu();
 
-    confWindow.webContents.openDevTools();
+    configWindow.webContents.openDevTools();
 });
 
 ipcMain.on("saved", (e) => {
-    confWindow.close();
+    configWindow.close();
 });

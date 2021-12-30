@@ -28,7 +28,24 @@
 
             <div class="card">
                <header>
-                React Barbaris <span class="grey">E:\Projects\React</span>
+                React Barbaris <span class="grey">E:\Projects\React</span> 
+                <div class="dropdown" style="width: 36px;">
+                  <div class="round button dropdown-toggle" style="min-width: 100% !important;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></div>
+                
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li>
+                      <a class="dropdown-item" href="#">Action</a>
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item" href="#">Another action</a>
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </li>
+                  </ul>
+                </div>
               </header>
 
               <content>
@@ -36,11 +53,13 @@
               </content>
 
               <footer>
-                <a href="#">
+                <a href="#" id="openProjectFolder" data-folder="E:\Projects\">
+                  <i class="bi bi-folder-symlink"></i>
                   Открыть папку проекта
                 </a>
 
-                <a href="#">
+                <a href="#" id="openProjectIDE" data-folder="E:\Projects\">
+                  <i class="bi bi-box-arrow-up-left"></i>
                   Открыть проект в IDE
                 </a>
               </footer>
@@ -57,10 +76,12 @@
 
               <footer>
                 <a href="#">
+                  <i class="bi bi-folder-symlink"></i>
                   Открыть папку проекта
                 </a>
 
                 <a href="#">
+                  <i class="bi bi-box-arrow-up-left"></i>
                   Открыть проект в IDE
                 </a>
               </footer>
@@ -70,25 +91,26 @@
 
         <div class="col-4">
           <div class="buttons">
-            <button class="primary button fluid" id="openIdeBtn">
+            <button class="primary button fluid" id="openIDE">
               Открыть IDE
             </button>
 
-            <button class="primary button fluid" id="openGgcBtn">
+            <button class="primary button fluid" id="openGit">
               Открыть Git Client
             </button>
 
-            <button class="primary button fluid" id="openConfigBtn">
+            <button class="primary button fluid" id="openConfig">
               Открыть конфигуратор
             </button>
 
-            <button class="primary button fluid" id="openConvBtn">
+            <button class="primary button fluid" id="openConverter">
               Открыть конвертор
             </button>
           </div>
         </div>
       </div>
     </div>
+
     <script src="./renderer.js"></script>
   </body>
 </html>
