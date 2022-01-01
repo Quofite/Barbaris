@@ -65,6 +65,7 @@ ipcRenderer.on("got-directory", (e, data) => {
     let splitted = data.split("\\");
     let toSave = splitted[splitted.length - 1] + "," + data + "\n";
     fs.appendFileSync("projects.csv", toSave);
+    showProjs();
 });
 
 // ------------------------------------------------ загрузка проектов из памяти
@@ -72,6 +73,10 @@ function showProjs(){
     const fs = require("fs");
     var parser = require('csv-parser');
     var mainBlock = document.getElementById("mainBlock");
+    
+    while(mainBlock.children.length > 1){
+        mainBlock.removeChild(mainBlock.lastChild);
+    }
 
     fs.createReadStream("projects.csv")
         .pipe(parser({ delimiter: ":" }))
@@ -96,6 +101,7 @@ function showProjs(){
             element.appendChild(contentbar);
 
             var footer = document.createElement("footer");
+
             var openProjFolderBtn = document.createElement("a");
             openProjFolderBtn.setAttribute("id", "openProjectFolder");
             openProjFolderBtn.setAttribute("data-folder", csvRow.path);
@@ -105,6 +111,7 @@ function showProjs(){
             openProjFolderBtn.appendChild(folderIcon);
             var infoText1 = document.createTextNode("Открыть папку проекта");
             openProjFolderBtn.appendChild(infoText1);
+
             var openProjIdeBtn = document.createElement("a");
             openProjIdeBtn.setAttribute("id", "openProjectFolder");
             openProjIdeBtn.setAttribute("data-folder", csvRow.path);
@@ -114,6 +121,16 @@ function showProjs(){
             openProjIdeBtn.appendChild(ideIcon);
             var infoText2 = document.createTextNode("Открыть проект в IDE");
             openProjIdeBtn.appendChild(infoText2);
+
+            var deleteProjBtn = document.createElement("a");
+            deleteProjBtn.setAttribute("id", "deleteProject");
+            deleteProjBtn.setAttribute("data-folder", csvRow.path);
+            deleteProjBtn.setAttribute("href", "#");
+            var delIcon = document.createElement("i");
+            delIcon.setAttribute("class", "bi bi-x-octagon");
+            deleteProjBtn.appendChild(delIcon);
+            var infoText3 = document.createTextNode("Удалить проект");
+            deleteProjBtn.appendChild(infoText3);
 
             openProjFolderBtn.addEventListener("click", (event) => {
                 require("child_process").exec(`start "" "` + event.target.dataset.folder + `"`);
@@ -131,8 +148,32 @@ function showProjs(){
                 });
             });
 
+            deleteProjBtn.addEventListener("click", (event) => {
+                let remains = [];
+
+                fs.createReadStream("projects.csv")
+                    .pipe(parser())
+                    .on("data", (data) => {
+                        if(data.path !== event.target.dataset.folder){
+                            remains.push(data);
+                        }
+                    })
+                    .on("end", () => {
+                        console.log(remains);
+                        fs.writeFileSync("projects.csv", "name,path\n");
+
+                        for (let i = 0; i < remains.length; i++) {
+                            let toWrite = remains[i].name + "," + remains[i].path + "\n";
+                            fs.appendFileSync("projects.csv", toWrite);
+                        }
+
+                        showProjs();
+                    });
+            });
+
             footer.appendChild(openProjFolderBtn);
             footer.appendChild(openProjIdeBtn);
+            footer.appendChild(deleteProjBtn);
             element.appendChild(footer);
             mainBlock.appendChild(element);
     })
