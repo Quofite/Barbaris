@@ -9,6 +9,13 @@ const { ipcRenderer } = require("electron");
 */
 
 
+var dirToAcarFile = __dirname;
+var parsedPath = dirToAcarFile.split("\\");
+var pathToExecFile = "";
+for (let j = 0; j < parsedPath.length - 2; j++) {
+    pathToExecFile += parsedPath[j] + "\\";
+}
+
 // --------------------------------------------------------------Кнопки слева
 // Открыть IDE
 document.querySelector("#openIDE").addEventListener("click", () => {
@@ -30,9 +37,16 @@ document.querySelector("#openGit").addEventListener("click", () => {
     let pathesJsonContent = require("fs").readFileSync("pathes.json", "utf8");
     let parsed = JSON.parse(pathesJsonContent);
 
-    exec(parsed.ggc, function(err, data) {  
-        console.log(err)                    
-    });
+    if(parsed.ggc === "GitClient.exe"){
+        exec(pathToExecFile + parsed.ggc, function(err, data) {  
+            console.log(err)                    
+        });
+    }
+    else {
+        exec(parsed.ggc, function(err, data) {  
+            console.log(err)                    
+        });
+    }
 });
 
 // Открыть конфиг
@@ -47,9 +61,16 @@ document.querySelector("#openConverter").addEventListener("click", () => {
     let pathesJsonContent = require("fs").readFileSync("pathes.json", "utf8");
     let parsed = JSON.parse(pathesJsonContent);
 
-    exec(parsed.convertor, function(err, data) {  
-        console.log(err)                      
-    });
+    if(parsed.convertor === "convertor\\Convertor.exe"){
+        exec(pathToExecFile + parsed.convertor, function(err, data) {  
+            console.log(err)                    
+        });
+    }
+    else {
+        exec(parsed.convertor, function(err, data) {  
+            console.log(err)                    
+        });
+    }
 });
 
 // ------------------------------------------------------------------ проекты
@@ -143,9 +164,27 @@ function showProjs(){
                     console.log(err)                    
                 });
 
-                exec(JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).ggc, [event.target.dataset.folder], function(err, data) {  
-                    console.log(err)                    
-                });
+                if(JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).ggc === "GitClient.exe"){
+                    exec(pathToExecFile + JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).ggc, [event.target.dataset.folder], function(err, data) {  
+                        console.log(err)                    
+                    });
+                }
+                else{
+                    exec(JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).ggc, [event.target.dataset.folder], function(err, data) {  
+                        console.log(err)                    
+                    });
+                }
+
+                if(JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).backuper === "Backuper.exe"){
+                    exec(pathToExecFile + JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).ggc, [event.target.dataset.folder], function(err, data) {  
+                        console.log(err)                    
+                    });
+                }
+                else{
+                    exec(JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).backuper, [event.target.dataset.folder], function(err, data) {  
+                        console.log(err)                    
+                    });
+                }
             });
 
             deleteProjBtn.addEventListener("click", (event) => {

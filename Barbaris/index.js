@@ -33,9 +33,9 @@ app.on("ready", () => {
 
     mainWindow.removeMenu();
 
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 
-    /*
+    
     mainWindow.on("minimize", (event) => {
         event.preventDefault();
 
@@ -55,10 +55,10 @@ app.on("ready", () => {
     
         return false;
     });
-    */
+    
 });
 
-/*const newTray = () => {
+const newTray = () => {
     let tray = new Tray("Barbaris.ico")
     tray.setToolTip("Barbaris")
     tray.setContextMenu(Menu.buildFromTemplate([
@@ -76,10 +76,10 @@ app.on("ready", () => {
             }
         }
     ]))
-}*/
+}
 
-/*app.whenReady().then(() => {
-})*/
+app.whenReady().then(() => {
+})
 
 app.on("window-all-closed", () => {
     app.quit(); 
@@ -104,7 +104,7 @@ ipcMain.on("openConfig", (e) => {
 
     configWindow.removeMenu();
 
-    configWindow.webContents.openDevTools();
+    //configWindow.webContents.openDevTools();
 });
 
 ipcMain.on("saved", (e) => {
