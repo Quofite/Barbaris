@@ -19,8 +19,7 @@ document.querySelector("#openIDE").addEventListener("click", () => {
     let parsed = JSON.parse(pathesJsonContent);
 
     exec(parsed.ide, function(err, data) {  
-        console.log(err)
-        console.log(data.toString());                       
+        console.log(err)                      
     });
 });
 
@@ -32,8 +31,7 @@ document.querySelector("#openGit").addEventListener("click", () => {
     let parsed = JSON.parse(pathesJsonContent);
 
     exec(parsed.ggc, function(err, data) {  
-        console.log(err)
-        console.log(data.toString());                       
+        console.log(err)                    
     });
 });
 
@@ -50,8 +48,7 @@ document.querySelector("#openConverter").addEventListener("click", () => {
     let parsed = JSON.parse(pathesJsonContent);
 
     exec(parsed.convertor, function(err, data) {  
-        console.log(err)
-        console.log(data.toString());                       
+        console.log(err)                      
     });
 });
 
@@ -64,26 +61,11 @@ document.querySelector("#newProjBtn").addEventListener("click", (e) => {
 
 ipcRenderer.on("got-directory", (e, data) => {
     const fs = require("fs");
-    console.log(data);
     data = data.toString();
     let splitted = data.split("\\");
     let toSave = splitted[splitted.length - 1] + "," + data + "\n";
     fs.appendFileSync("projects.csv", toSave);
 });
-
-// открыть папку
-document.querySelector("#openProjectFolder").addEventListener("click", (event) => {
-    require("child_process").exec(`start "" "` + event.target.dataset.folder + `"`);
-});
-
-document.querySelector("#openProjectIDE").addEventListener("click", (event) => {
-    var exec = require("child_process").execFile;
-
-    exec(JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).ide, [event.target.dataset.folder], function(err, data) {  
-        console.log(err)                    
-    });
-});
-
 
 // ------------------------------------------------ загрузка проектов из памяти
 function showProjs(){
@@ -132,6 +114,22 @@ function showProjs(){
             openProjIdeBtn.appendChild(ideIcon);
             var infoText2 = document.createTextNode("Открыть проект в IDE");
             openProjIdeBtn.appendChild(infoText2);
+
+            openProjFolderBtn.addEventListener("click", (event) => {
+                require("child_process").exec(`start "" "` + event.target.dataset.folder + `"`);
+            });
+
+            openProjIdeBtn.addEventListener("click", (event) => {
+                var exec = require("child_process").execFile;
+            
+                exec(JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).ide, [event.target.dataset.folder], function(err, data) {  
+                    console.log(err)                    
+                });
+
+                exec(JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).ggc, [event.target.dataset.folder], function(err, data) {  
+                    console.log(err)                    
+                });
+            });
 
             footer.appendChild(openProjFolderBtn);
             footer.appendChild(openProjIdeBtn);
