@@ -33,7 +33,7 @@ app.on("ready", () => {
 
     mainWindow.removeMenu();
 
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     
     mainWindow.on("minimize", (event) => {
@@ -66,6 +66,8 @@ const newTray = () => {
             label: "Open Barbaris",
             click: () => {
                 mainWindow.show();
+
+                tray.destroy(); // Насирало много иконок в трей
             }
         },
         { 
@@ -75,11 +77,15 @@ const newTray = () => {
                 app.quit();
             }
         }
-    ]))
-}
+    ]));
 
-app.whenReady().then(() => {
-})
+    // Убобно
+    tray.on("double-click", () => { 
+        mainWindow.show();
+
+        tray.destroy();
+    });
+}
 
 app.on("window-all-closed", () => {
     app.quit(); 

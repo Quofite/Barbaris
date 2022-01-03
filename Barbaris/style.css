@@ -39,6 +39,10 @@ a .grey {
     color: grey;
 }
 
+a i {
+    margin-right: .3em;
+}
+
 .row {
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -69,6 +73,17 @@ a .grey {
     box-shadow: 0 2px 6px 0 rgba(34,36,38,.15) !important;
     border: 2px solid transparent;
     cursor: pointer;
+}
+
+.button:disabled {
+    filter: grayscale(100%);
+    color: rgb(200, 200, 200) !important;
+    cursor: unset !important;
+}
+
+.button:disabled:hover {
+    border: 2px solid transparent;
+    opacity: 1;
 }
 
 .button:hover {
@@ -118,12 +133,12 @@ input[type="text"]:focus {
 }
 
 .card header {
-    display: flex;
     font-weight: bold;
     font-size: 24px;
 }
 
 .card header span {
+    margin-left: .6em;
     font-size: 14px;
     color: grey;
     font-weight: normal;
@@ -131,7 +146,7 @@ input[type="text"]:focus {
 
 .card footer a {
     color: rgb(90, 90, 90);
-    margin-right: .2em;
+    margin-right: .6em;
 }
 
 .cards {

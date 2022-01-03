@@ -148,7 +148,7 @@ function showProjs(){
             deleteProjBtn.setAttribute("data-folder", csvRow.path);
             deleteProjBtn.setAttribute("href", "#");
             var delIcon = document.createElement("i");
-            delIcon.setAttribute("class", "bi bi-x-octagon");
+            delIcon.setAttribute("class", "bi bi-folder-minus");
             deleteProjBtn.appendChild(delIcon);
             var infoText3 = document.createTextNode("Удалить проект");
             deleteProjBtn.appendChild(infoText3);
