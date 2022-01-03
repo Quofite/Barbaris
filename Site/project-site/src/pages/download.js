@@ -16,14 +16,35 @@ var DownloadPage;
 var links = {
     "stable": [
         "Not found",
-        { platform: "windows",  icon: "windows", value: "", text: "Windows" },
-        { platform: "linux",  icon: "linux", value: "", text: "Linux" },
+        { 
+            platform: "windows",  
+            icon: "windows", 
+            value: "", 
+            text: "Windows" 
+        },
+        { 
+            platform: "linux",  
+            icon: "linux", 
+            value: "", 
+            text: "Linux" 
+        },
     ],
 
     "alpha": [
-        "0.0.2",
-        { platform: "windows", icon: "windows", value: "https://github.com/Quofite/Barbaris/releases/download/alpha/BarbarisSetup.exe", text: "Windows" },
-        { platform: "linux", icon: "linux", value: "", text: "Linux" },
+        "0.0.3",
+        { 
+            platform: 
+            "windows", 
+            icon: "windows", 
+            value: "https://github.com/Quofite/Barbaris/releases/download/alpha/BarbarisSetup.exe", 
+            text: "Windows" 
+        },
+        { 
+            platform: "linux", 
+            icon: "linux", 
+            value: "https://github.com/Quofite/Barbaris/releases/download/alpha/barbaris-for-linux.tar.xz", 
+            text: "Linux" 
+        },
     ],
 }
 

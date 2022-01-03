@@ -106,7 +106,7 @@ class ContentToolsPage extends React.Component {
                             </Form.Field>
 
                             <Form.Field>
-                                <Button className="icon labeled green" icon="check" content="Validate" />
+                                <Button className="icon labeled green" icon="play" content="Validate" />
                             </Form.Field>
                         </Form>
                     </Segment>

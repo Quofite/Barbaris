@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
 
-
 import {
   Button,
   Container,
   Menu,
 } from "semantic-ui-react"
+
+//import logo from "../images/logo.png";
 
 const HeaderMenu = () => (
     <Menu
