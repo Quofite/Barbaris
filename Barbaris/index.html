@@ -96,5 +96,18 @@
     </div>
 
     <script src="./renderer.js"></script>
+
+    <script>
+      let pathesJsonContent = require("fs").readFileSync("pathes.json", "utf8");
+      let parsed = JSON.parse(pathesJsonContent);
+
+      if(parsed.ide === ""){
+        let ideBtn = document.getElementById("openIDE");
+        ideBtn.setAttribute("disabled");
+      } else {
+        let ideBtn = document.getElementById("openIDE");
+        ideBtn.removeAttribute("disabled");
+      }
+    </script>
   </body>
 </html>

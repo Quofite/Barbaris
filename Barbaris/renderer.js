@@ -77,10 +77,10 @@ document.querySelector("#openConverter").addEventListener("click", () => {
 // добавление нового проекта
 document.querySelector("#newProjBtn").addEventListener("click", (e) => {
     console.log("clicked");
-    ipcRenderer.send('selectDirectory');
+    ipcRenderer.send('selectDirectoryForNew');
 })
 
-ipcRenderer.on("got-directory", (e, data) => {
+ipcRenderer.on("got-directory-for-new", (e, data) => {
     const fs = require("fs");
     data = data.toString();
     let splitted = data.split("\\");

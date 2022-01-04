@@ -1,6 +1,6 @@
-document.querySelector("#save").addEventListener("click", () => {
-    const { ipcRenderer } = require("electron");
+const { ipcRenderer } = require("electron");
 
+document.querySelector("#save").addEventListener("click", () => {
     let idePath = document.getElementById("idePathField").value;
     let ggcPath = document.getElementById("gitPathField").value;
     let convPath = document.getElementById("converterPathField").value;

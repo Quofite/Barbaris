@@ -99,7 +99,7 @@ ipcMain.on("openConfig", (e) => {
         height: 500,
         title: "Barbaris",
         icon: "Barbaris.ico",
-        resizable: false,
+        // resizable: false,
         webPreferences:{
             contextIsolation: false,
             nodeIntegration: true
@@ -110,19 +110,29 @@ ipcMain.on("openConfig", (e) => {
 
     configWindow.removeMenu();
 
-    //configWindow.webContents.openDevTools();
+    configWindow.webContents.openDevTools();
 });
 
 ipcMain.on("saved", (e) => {
     configWindow.close();
+    mainWindow.reload();
 });
 
 let directory;
-ipcMain.on("selectDirectory", (e) => {
+ipcMain.on("selectDirectoryForNew", (e) => {
+    const { dialog } = require("electron");
+    directory = dialog.showOpenDialogSync(mainWindow, {
+        properties: ['openDirectory']
+    });
+    e.sender.send("got-directory-for-new", directory);
+});
+
+/*
+function createDirectoryDialog(){
     const { dialog } = require("electron");
     directory = dialog.showOpenDialogSync(mainWindow, {
         properties: ['openDirectory']
     });
 
-    e.sender.send("got-directory", directory);
-});
+    return directory;
+} */
