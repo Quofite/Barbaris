@@ -9,6 +9,13 @@
 
 /BarbarisSetup
 
+/CMS/.settings
+/CMS/build
+/CMS/.classpath
+/CMS/.project
+/CMS/src/main/webapp/package-lock.json
+/CMS/src/main/webapp/node_modules
+
 /GitClient/.vs
 /GitClient/Gitclient/bin
 /GitClient/Gitclient/obj

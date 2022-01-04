@@ -1,0 +1,14 @@
+{
+  "name": "barbaris-cms",
+  "version": "0.0.1",
+  "description": "cms by barbaris",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gleb Nikitin",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}
