@@ -73,6 +73,10 @@ document.querySelector("#openConverter").addEventListener("click", () => {
     }
 });
 
+document.querySelector("#openDoc").addEventListener("click", () => {
+    require("child_process").exec(`start "" "` + "https://github.com/Quofite/Barbaris#readme" + `"`);
+});
+
 // ------------------------------------------------------------------ проекты
 // добавление нового проекта
 document.querySelector("#newProjBtn").addEventListener("click", (e) => {
