@@ -31,7 +31,7 @@ app.on("ready", () => {
         slashes: true
     }));
 
-    mainWindow.removeMenu();
+    //mainWindow.removeMenu();
 
     mainWindow.webContents.openDevTools();
 
@@ -56,6 +56,18 @@ app.on("ready", () => {
         return false;
     });
     
+    ipcMain.handle("dark-mode:toggle", () => {
+        if (nativeTheme.shouldUseDarkColors)
+        	nativeTheme.themeSource = "light"
+        else
+          	nativeTheme.themeSource = "dark"
+
+        return nativeTheme.shouldUseDarkColors
+    })
+    
+    ipcMain.handle("dark-mode:system", () => {
+    	nativeTheme.themeSource = "system"
+	})
 });
 
 const newTray = () => {
@@ -122,7 +134,7 @@ let directory;
 ipcMain.on("selectDirectoryForNew", (e) => {
     const { dialog } = require("electron");
     directory = dialog.showOpenDialogSync(mainWindow, {
-        properties: ['openDirectory']
+        properties: ["openDirectory"]
     });
     e.sender.send("got-directory-for-new", directory);
 });
@@ -131,7 +143,7 @@ ipcMain.on("selectDirectoryForNew", (e) => {
 function createDirectoryDialog(){
     const { dialog } = require("electron");
     directory = dialog.showOpenDialogSync(mainWindow, {
-        properties: ['openDirectory']
+        properties: ["openDirectory"]
     });
 
     return directory;

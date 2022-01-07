@@ -15,17 +15,41 @@
     <link href="./style.css" rel="stylesheet" type="text/css" />
   </head>
   <body onload="showProjs()">
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding-left: 0;">
       <div class="row">
-        <div class="col-8">
-          <div class="cards" id="mainBlock">
-            <a class="card" style="align-items: center;" href="#" id="newProjBtn">
-              <content>
-                <i class="bi bi-plus"></i>
-                Новый проект
-              </content>
-            </a>
+				<div class="col-4" style="padding-left: 0;">
+          <div class="left bordered buttons">
+            <button class="primary button fluid" id="openIDE" disabled>
+              Открыть IDE
+            </button>
 
+            <button class="primary button fluid" id="openGit">
+              Открыть Git Client
+            </button>
+
+            <button class="primary button fluid" id="openConverter">
+              Открыть конвертор
+            </button>
+
+            <hr>
+
+            <button class="primary button fluid" id="openConfig">
+              Открыть конфигуратор
+            </button>
+
+            <button class="primary button fluid" id="openDoc">
+              Открыть документацию
+            </button>
+          </div>
+        </div>
+				
+        <div class="col-8">
+          <div class="fluid button" href="#" id="newProjBtn" style="margin-top: 0;">
+            <i class="bi bi-plus"></i>
+            Новый проект
+          </div>
+
+          <div class="cards" id="mainBlock">
             <!--
             <div class="card">
                <header>
@@ -70,32 +94,6 @@
             </div> -->
           </div>
         </div>
-
-        <div class="col-4">
-          <div class="buttons">
-            <button class="primary button fluid" id="openIDE" disabled>
-              Открыть IDE
-            </button>
-
-            <button class="primary button fluid" id="openGit">
-              Открыть Git Client
-            </button>
-
-            <button class="primary button fluid" id="openConverter">
-              Открыть конвертор
-            </button>
-
-            <hr>
-
-            <button class="primary button fluid" id="openConfig">
-              Открыть конфигуратор
-            </button>
-
-            <button class="primary button fluid" id="openDoc">
-              Открыть документацию
-            </button>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -105,13 +103,10 @@
       let pathesJsonContent = require("fs").readFileSync("pathes.json", "utf8");
       let parsed = JSON.parse(pathesJsonContent);
 
-      if(parsed.ide === ""){
-        let ideBtn = document.getElementById("openIDE");
-        ideBtn.setAttribute("disabled");
-      } else {
-        let ideBtn = document.getElementById("openIDE");
-        ideBtn.removeAttribute("disabled");
-      }
+      if (!parsed.ide)
+      	document.getElementById("openIDE").setAttribute("disabled");
+      else
+        document.getElementById("openIDE").removeAttribute("disabled");
     </script>
   </body>
 </html>
