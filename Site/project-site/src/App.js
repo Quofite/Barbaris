@@ -16,15 +16,15 @@ import ToolsPage from "./pages/tools";
 
 //ROUTING
 const App = () => (
-  <Router>
-    <HeaderMenu />
-    <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/download" element={<DownloadPage />} />
-      <Route path="/tools" element={<ToolsPage />} />
-    </Routes>
-    <Footer />
-  </Router>
+	<Router>
+		<HeaderMenu />
+		<Routes>
+			<Route path="/" element={<MainPage />} />
+			<Route path="/download" element={<DownloadPage />} />
+			<Route path="/tools" element={<ToolsPage />} />
+		</Routes>
+		<Footer />
+	</Router>
 );
 
 export default App;

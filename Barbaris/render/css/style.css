@@ -1,12 +1,12 @@
 @font-face {
 	font-family: "Inter"; 
-	src: url("./fonts/Inter/Inter-Regular.ttf");
+	src: url("../fonts/Inter/Inter-Regular.ttf");
 }
 
 @font-face {
 	font-family: "Inter";
 	font-weight: bold;
-	src: url("./fonts/Inter/Inter-Bold.ttf");
+	src: url("../fonts/Inter/Inter-Bold.ttf");
 }
 
 *:not(i) {

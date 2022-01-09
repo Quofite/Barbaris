@@ -1,17 +1,10 @@
-const path = require("path");
-const url = require("url");
-const {
-    app, 
-    BrowserWindow,
-    Tray,
-    Menu,
-    ipcMain
-} = require("electron");
-const { electron } = require("process");
-
+var path = require("path");
+var url = require("url");
+var _a = require("electron"), app = _a.app, BrowserWindow = _a.BrowserWindow, Tray = _a.Tray, Menu = _a.Menu, ipcMain = _a.ipcMain;
+var electron = require("process").electron;
 // Главное окно
 var mainWindow;
-app.on("ready", () => {
+app.on("ready", function () {
     mainWindow = new BrowserWindow({
         width: 1400,
         height: 800,
@@ -19,126 +12,102 @@ app.on("ready", () => {
         icon: "Barbaris.ico",
         minWidth: 800,
         minHeight: 450,
-        webPreferences:{
+        webPreferences: {
             contextIsolation: false,
             nodeIntegration: true
-        }
+        },
+        titleBarStyle: 'hidden'
     });
-
-    mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, "index.html"),
-        protocol: "file",
-        slashes: true
-    }));
-
+    mainWindow.loadURL(path.join(__dirname, "../render/main.html"));
     //mainWindow.removeMenu();
-
     mainWindow.webContents.openDevTools();
-
-    
-    mainWindow.on("minimize", (event) => {
+    mainWindow.on("minimize", function (event) {
         event.preventDefault();
-
         newTray();
-
         mainWindow.hide();
-    });
-
-    mainWindow.on("close", (event) => { 
-        if (!app.isQuiting){
-            event.preventDefault();
-
-            newTray();
-
-            mainWindow.hide();
-        }
-    
         return false;
     });
-    
-    ipcMain.handle("dark-mode:toggle", () => {
+    mainWindow.on("close", function (event) {
+        if ( /*!app.isQuiting*/!isQuiting) {
+            event.preventDefault();
+            newTray();
+            mainWindow.hide();
+        }
+        return false;
+    });
+    /*ipcMain.handle("dark-mode:toggle", () => {
         if (nativeTheme.shouldUseDarkColors)
-        	nativeTheme.themeSource = "light"
+            nativeTheme.themeSource = "light"
         else
-          	nativeTheme.themeSource = "dark"
+            nativeTheme.themeSource = "dark"
 
         return nativeTheme.shouldUseDarkColors
     })
     
     ipcMain.handle("dark-mode:system", () => {
-    	nativeTheme.themeSource = "system"
-	})
+        nativeTheme.themeSource = "system"
+    })*/
 });
-
-const newTray = () => {
-    let tray = new Tray("Barbaris.ico")
-    tray.setToolTip("Barbaris")
+var isQuiting;
+var newTray = function () {
+    var tray = new Tray("Barbaris.ico");
+    tray.setToolTip("Barbaris");
     tray.setContextMenu(Menu.buildFromTemplate([
-        { 
+        {
             label: "Open Barbaris",
-            click: () => {
+            click: function () {
                 mainWindow.show();
-
                 tray.destroy(); // Насирало много иконок в трей
             }
         },
-        { 
+        {
             label: "Close",
-            click: () => {
-                app.isQuiting = true;
+            click: function () {
+                isQuiting = true;
+                //app.isQuiting = true;
                 app.quit();
             }
         }
     ]));
-
     // Убобно
-    tray.on("double-click", () => { 
+    tray.on("double-click", function () {
         mainWindow.show();
-
         tray.destroy();
     });
-}
-
-app.on("window-all-closed", () => {
-    app.quit(); 
+};
+app.on("window-all-closed", function () {
+    app.quit();
 });
-
 // Окно конфига
 var configWindow;
-ipcMain.on("openConfig", (e) => {
+ipcMain.on("openConfig", function () {
     configWindow = new BrowserWindow({
         width: 700,
         height: 500,
         title: "Barbaris",
         icon: "Barbaris.ico",
         // resizable: false,
-        webPreferences:{
+        webPreferences: {
             contextIsolation: false,
             nodeIntegration: true
         }
     });
-
-    configWindow.loadFile("config.html");
-
+    configWindow.loadFile(path.join(__dirname, "../render/config.html"));
     configWindow.removeMenu();
-
     configWindow.webContents.openDevTools();
 });
-
-ipcMain.on("saved", (e) => {
+ipcMain.on("saved", function () {
     configWindow.close();
     mainWindow.reload();
 });
-
-let directory;
-ipcMain.on("selectDirectoryForNew", (e) => {
-    const { dialog } = require("electron");
-    directory = dialog.showOpenDialogSync(mainWindow, {
+var dir;
+ipcMain.on("selectDirectoryForNew", function (event) {
+    var dialog = require("electron").dialog;
+    dir = dialog.showOpenDialogSync(mainWindow, {
         properties: ["openDirectory"]
     });
-    e.sender.send("got-directory-for-new", directory);
+    event.sender.send("got-directory-for-new", dir);
 });
-
 /*
 function createDirectoryDialog(){
     const { dialog } = require("electron");
@@ -147,4 +116,5 @@ function createDirectoryDialog(){
     });
 
     return directory;
-} */
+} */ 
+//# sourceMappingURL=index.js.map
