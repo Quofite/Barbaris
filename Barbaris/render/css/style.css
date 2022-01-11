@@ -47,6 +47,51 @@ body {
     }
 }
 
+.statusBar {
+    display: flex;
+    background-color: white;
+    height: 48px;
+    /*border-bottom: 2px solid black;*/
+}
+
+.draggable {
+    -webkit-app-region: drag;
+    width: 100%;
+}
+
+.statusBar .leftBar {
+    display: flex;
+    align-items: center;
+}
+
+.statusBar .rightBar {
+    display: flex;
+    height: 100%;
+    margin-left: auto;
+}
+
+.statusBar .statusBarButton {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 1.6em;
+    padding-right: 1.6em;
+    transition: .2s;
+}
+
+.statusBar .statusBarButton img {
+    height: 100%;
+}
+
+.statusBar .statusBarButton.img {
+    padding-top: .2em;
+    padding-bottom: .2em;
+}
+
+.statusBar .statusBarButton:hover {
+    background-color: rgb(220, 220, 220);
+}
+
 .container-fluid {
     padding-top: .75rem;
 }
@@ -152,6 +197,17 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
+    border: 2px solid black;
+}
+
+input[type="file"] {
+    padding: .6em;
+    border-radius: .6em;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 6px 0 rgba(34,36,38,.15) !important;
+}
+
+input[type="file"]:focus {
     border: 2px solid black;
 }
 

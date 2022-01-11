@@ -1,16 +1,17 @@
-const path = require("path");
-const url = require("url");
-const {
+import path = require("path");
+import { 
     app, 
-    BrowserWindow,
-    Tray,
-    Menu,
-    ipcMain
-} = require("electron");
-const { electron } = require("process");
+    BrowserWindow, 
+    Tray, 
+    Menu, 
+    ipcMain, 
+    nativeTheme,
+    dialog
+} from "electron";
+import { electron } from "process";
 
 // Главное окно
-var mainWindow: { loadURL: (arg0: any) => void; webContents: { openDevTools: () => void; }; on: (arg0: string, arg1: { (event: { preventDefault: () => void; }): void; (event: { preventDefault: () => void; }): boolean; }) => void; hide: () => void; show: () => void; reload: () => void; }
+var mainWindow: Electron.BrowserWindow;
 app.on("ready", () => {
     mainWindow = new BrowserWindow({
         width: 1400,
@@ -21,19 +22,25 @@ app.on("ready", () => {
         minHeight: 450,
         webPreferences:{
             contextIsolation: false,
-            nodeIntegration: true
+            nodeIntegration: true,
+            //preload: "preload.ts",
         },
-        titleBarStyle: 'hidden'
+        titleBarStyle: "hidden"
     });
 
     mainWindow.loadURL(path.join(__dirname, "../render/main.html"));
+
+    /*ipcMain.on('set-ignore-mouse-events', (event, ...args: [boolean]) => {
+        const win = BrowserWindow.fromWebContents(event.sender)
+        win.setIgnoreMouseEvents(...args)
+    })*/
 
     //mainWindow.removeMenu();
 
     mainWindow.webContents.openDevTools();
 
     
-    mainWindow.on("minimize", (event) => {
+    mainWindow.on("minimize", (event: { preventDefault: () => void; }) => {
         event.preventDefault();
 
         newTray();
@@ -55,18 +62,18 @@ app.on("ready", () => {
         return false;
     });
     
-    /*ipcMain.handle("dark-mode:toggle", () => {
+    ipcMain.handle("dark-mode:toggle", () => {
         if (nativeTheme.shouldUseDarkColors)
-        	nativeTheme.themeSource = "light"
+            nativeTheme.themeSource = "light"
         else
-          	nativeTheme.themeSource = "dark"
+              nativeTheme.themeSource = "dark"
 
         return nativeTheme.shouldUseDarkColors
     })
     
     ipcMain.handle("dark-mode:system", () => {
-    	nativeTheme.themeSource = "system"
-	})*/
+        nativeTheme.themeSource = "system"
+    })
 });
 
 var isQuiting: boolean;
@@ -105,7 +112,7 @@ app.on("window-all-closed", () => {
 });
 
 // Окно конфига
-var configWindow: { loadFile: (arg0: string) => void; removeMenu: () => void; webContents: { openDevTools: () => void; }; close: () => void; }
+var configWindow: Electron.BrowserWindow;
 ipcMain.on("openConfig", () => {
     configWindow = new BrowserWindow({
         width: 700,
@@ -131,10 +138,18 @@ ipcMain.on("saved", () => {
     mainWindow.reload();
 });
 
+ipcMain.on("minimize", () => {
+    mainWindow.minimize();
+});
+
+ipcMain.on("maximize", () => {
+    mainWindow.maximize();
+});
+
+//app.addRecentDocument(path.join(__dirname, csvRow.path))
+
 var dir: string[];
 ipcMain.on("selectDirectoryForNew", (event: { sender: { send: (arg0: string, arg1: string[]) => void; }; }) => {
-    const { dialog } = require("electron");
-
     dir = dialog.showOpenDialogSync(mainWindow, {
         properties: ["openDirectory"]
     });

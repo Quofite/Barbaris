@@ -1,11 +1,11 @@
+"use strict";
+exports.__esModule = true;
 var path = require("path");
-var url = require("url");
-var _a = require("electron"), app = _a.app, BrowserWindow = _a.BrowserWindow, Tray = _a.Tray, Menu = _a.Menu, ipcMain = _a.ipcMain;
-var electron = require("process").electron;
+var electron_1 = require("electron");
 // Главное окно
 var mainWindow;
-app.on("ready", function () {
-    mainWindow = new BrowserWindow({
+electron_1.app.on("ready", function () {
+    mainWindow = new electron_1.BrowserWindow({
         width: 1400,
         height: 800,
         title: "Barbaris",
@@ -19,6 +19,10 @@ app.on("ready", function () {
         titleBarStyle: 'hidden'
     });
     mainWindow.loadURL(path.join(__dirname, "../render/main.html"));
+    /*ipcMain.on('set-ignore-mouse-events', (event, ...args: [boolean]) => {
+        const win = BrowserWindow.fromWebContents(event.sender)
+        win.setIgnoreMouseEvents(...args)
+    })*/
     //mainWindow.removeMenu();
     mainWindow.webContents.openDevTools();
     mainWindow.on("minimize", function (event) {
@@ -35,24 +39,22 @@ app.on("ready", function () {
         }
         return false;
     });
-    /*ipcMain.handle("dark-mode:toggle", () => {
-        if (nativeTheme.shouldUseDarkColors)
-            nativeTheme.themeSource = "light"
+    electron_1.ipcMain.handle("dark-mode:toggle", function () {
+        if (electron_1.nativeTheme.shouldUseDarkColors)
+            electron_1.nativeTheme.themeSource = "light";
         else
-            nativeTheme.themeSource = "dark"
-
-        return nativeTheme.shouldUseDarkColors
-    })
-    
-    ipcMain.handle("dark-mode:system", () => {
-        nativeTheme.themeSource = "system"
-    })*/
+            electron_1.nativeTheme.themeSource = "dark";
+        return electron_1.nativeTheme.shouldUseDarkColors;
+    });
+    electron_1.ipcMain.handle("dark-mode:system", function () {
+        electron_1.nativeTheme.themeSource = "system";
+    });
 });
 var isQuiting;
 var newTray = function () {
-    var tray = new Tray("Barbaris.ico");
+    var tray = new electron_1.Tray("Barbaris.ico");
     tray.setToolTip("Barbaris");
-    tray.setContextMenu(Menu.buildFromTemplate([
+    tray.setContextMenu(electron_1.Menu.buildFromTemplate([
         {
             label: "Open Barbaris",
             click: function () {
@@ -65,7 +67,7 @@ var newTray = function () {
             click: function () {
                 isQuiting = true;
                 //app.isQuiting = true;
-                app.quit();
+                electron_1.app.quit();
             }
         }
     ]));
@@ -75,13 +77,13 @@ var newTray = function () {
         tray.destroy();
     });
 };
-app.on("window-all-closed", function () {
-    app.quit();
+electron_1.app.on("window-all-closed", function () {
+    electron_1.app.quit();
 });
 // Окно конфига
 var configWindow;
-ipcMain.on("openConfig", function () {
-    configWindow = new BrowserWindow({
+electron_1.ipcMain.on("openConfig", function () {
+    configWindow = new electron_1.BrowserWindow({
         width: 700,
         height: 500,
         title: "Barbaris",
@@ -96,14 +98,20 @@ ipcMain.on("openConfig", function () {
     configWindow.removeMenu();
     configWindow.webContents.openDevTools();
 });
-ipcMain.on("saved", function () {
+electron_1.ipcMain.on("saved", function () {
     configWindow.close();
     mainWindow.reload();
 });
+electron_1.ipcMain.on("minimize", function () {
+    mainWindow.minimize();
+});
+electron_1.ipcMain.on("maximize", function () {
+    mainWindow.maximize();
+});
+//app.addRecentDocument(path.join(__dirname, csvRow.path))
 var dir;
-ipcMain.on("selectDirectoryForNew", function (event) {
-    var dialog = require("electron").dialog;
-    dir = dialog.showOpenDialogSync(mainWindow, {
+electron_1.ipcMain.on("selectDirectoryForNew", function (event) {
+    dir = electron_1.dialog.showOpenDialogSync(mainWindow, {
         properties: ["openDirectory"]
     });
     event.sender.send("got-directory-for-new", dir);
