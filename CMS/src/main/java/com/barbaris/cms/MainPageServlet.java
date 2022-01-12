@@ -1,5 +1,5 @@
 package com.barbaris.cms;
-import java.io.File;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/mainPage")
 public class MainPageServlet extends HttpServlet {
+	private static final long serialVersionUID = -6634931462323541045L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getParameter("path");
 		request.setAttribute("path", path);

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/saveSettings")
 public class SettingSaverServlet extends HttpServlet {
+	private static final long serialVersionUID = 5648922569913779581L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		getServletContext().getRequestDispatcher("/mainPage").forward(request, response);
 	}

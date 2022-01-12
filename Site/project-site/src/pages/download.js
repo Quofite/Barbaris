@@ -55,13 +55,13 @@ const ButtonsDownloadPage = () => (
             <Grid.Row textAlign="center">
                 <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
                     <Header as="h3" style={{ fontSize: "2em" }}>
-                        Stable Version
+                        Стабильная версия
                     </Header>
                     
-                    <p style={{ fontSize: "1.33em" }}>Current version: {links["stable"][0]}</p>
+                    <p style={{ fontSize: "1.33em" }}>Текущая версия: {links["stable"][0]}</p>
 
                     <Dropdown
-                        text="Download"
+                        text="Скачать"
                         icon="download"
                         floating
                         labeled
@@ -88,13 +88,13 @@ const ButtonsDownloadPage = () => (
 
                 <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
                     <Header as="h3" style={{ fontSize: "2em" }}>
-                        Alpha Version
+                        Alpha версия
                     </Header>
 
-                    <p style={{ fontSize: "1.33em" }}>Current version: {links["alpha"][0]}</p>
+                    <p style={{ fontSize: "1.33em" }}>Текущая версия: {links["alpha"][0]}</p>
                    
                     <Dropdown
-                        text="Download"
+                        text="Скачать"
                         icon="download"
                         floating
                         labeled
@@ -129,15 +129,14 @@ const ContentDownloadPage = () => (
         <Grid stackable>
             <Grid.Column width={8}>
                 <h1>
-                    How to install
+                    Как установить?
                 </h1>
 
                 <List as="ol" style={{ fontSize: "1.3em" }}>
-                    <List.Item as="li">Download installer for your system</List.Item>
-                    <List.Item as="li">Open installer</List.Item>
-                    <List.Item as="li">Select the installation folder or continue to the standard folder</List.Item>
-                    <List.Item as="li">Wait for the installation to finish</List.Item>
-                    <List.Item as="li">Enjoy the program</List.Item>
+                    <List.Item as="li">Скачайте установщик или архив для своей ОС</List.Item>
+                    <List.Item as="li">Запустите установщик / распакуйте архив</List.Item>
+                    <List.Item as="li">Дождитесь завершения установки</List.Item>
+                    <List.Item as="li">Наслаждайтесь решением</List.Item>
                 </List>
             </Grid.Column>
 

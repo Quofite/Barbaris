@@ -26,8 +26,8 @@ class LeftSideToolsPage extends React.Component {
                 >
                     <Icon name="js" />
                     <Step.Content>
-                        <Step.Title>Json converter</Step.Title>
-                        <Step.Description>Convert json to arrays in different lang's</Step.Description>
+                        <Step.Title>JSON Конвертор</Step.Title>
+                        <Step.Description>Конвертируйте JSON-записи в строки для любого ЯП</Step.Description>
                     </Step.Content>
                 </Step>
 
@@ -38,8 +38,8 @@ class LeftSideToolsPage extends React.Component {
                 >
                     <Icon name="database" />
                     <Step.Content>
-                        <Step.Title>SQL Validator</Step.Title>
-                        <Step.Description>Validate your SQL request's</Step.Description>
+                        <Step.Title>SQL Валидатор</Step.Title>
+                        <Step.Description>Проверьте правильность SQL-запроса</Step.Description>
                     </Step.Content>
                 </Step>
             </Step.Group>
@@ -70,22 +70,22 @@ class ContentToolsPage extends React.Component {
                 <Grid.Column width={10}>
                     <Segment style={{ width: "100%" }}>
                         <h2>
-                            JSON Converter
+                            JSON Конвертор
                         </h2>
 
                         <Form>
                             <Form.Field>
-                                <label>Enter JSON here</label>
+                                <label>Введите JSON здесь</label>
                                 <TextArea fluid />
                             </Form.Field>
 
                             <Form.Field>
-                                <label>Output</label>
+                                <label>Вывод</label>
                                 <TextArea fluid readOnly />
                             </Form.Field>
 
                             <Form.Field>
-                                <Button className="icon labeled green" icon="sync" content="Convert" />
+                                <Button className="icon labeled green" icon="sync" content="Конвертировать" />
                             </Form.Field>
                         </Form>
                     </Segment>
@@ -96,17 +96,17 @@ class ContentToolsPage extends React.Component {
                 <Grid.Column width={10}>
                     <Segment style={{ width: "100%" }}>
                         <h2>
-                            SQL Validator
+                            SQL Валидатор
                         </h2>
 
                         <Form>
                             <Form.Field>
-                                <label>Enter SQL code here</label>
+                                <label>Введите SQL код здесь</label>
                                 <TextArea fluid />
                             </Form.Field>
 
                             <Form.Field>
-                                <Button className="icon labeled green" icon="play" content="Validate" />
+                                <Button className="icon labeled green" icon="play" content="Проверить" />
                             </Form.Field>
                         </Form>
                     </Segment>

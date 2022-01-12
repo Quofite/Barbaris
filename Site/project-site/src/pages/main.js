@@ -34,7 +34,7 @@ const HeadMainPage = () => (
 			/>
 			<Header
 				as="h2"
-				content="New modern software for easy web-developing"
+				content="Современное решение для програмирования"
 				inverted
 				style={{
 					fontSize: "1.7em",
@@ -43,7 +43,7 @@ const HeadMainPage = () => (
 				}}
 			/>
 			<Button primary size="huge" href="#HowToStart">
-				Get started
+				Начните сейчас
 				<Icon name="right arrow" />
 			</Button>
 		</Container>
@@ -59,15 +59,15 @@ const ContentMainPage = () => (
 
 			<Grid.Column width={8}>
 				<h1>
-					Software for modern developers
+					Решение для современных разработчиков
 				</h1>
 
 				<p style={{ fontSize: "1.7em" }}>
-					Software to simplify development. It has great functionality.
+					Решение создано для упрощения работы с кодом и имеет потрясающий функционал
 				</p>
 
 				<Button color="green" size="big" as={Link} to="/download">
-					Download
+					Скачать
 					<Icon name="right arrow" />
 				</Button>
 			</Grid.Column>

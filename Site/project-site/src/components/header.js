@@ -14,11 +14,11 @@ const HeaderMenu = () => (
         size = "large"
     >
         <Container>
-            <Menu.Item as={NavLink} to="/" content="Home" activeClassName="active" />
-            <Menu.Item as={NavLink} to="/download" content="Download" activeClassName="active" />
-            <Menu.Item as={NavLink} to="/tools" content="Web-Tools" activeClassName="active" />
+            <Menu.Item as={NavLink} to="/" content="Главная" activeClassName="active" />
+            <Menu.Item as={NavLink} to="/download" content="Скачать" activeClassName="active" />
+            <Menu.Item as={NavLink} to="/tools" content="Веб-инструменты" activeClassName="active" />
             <Menu.Item position="right">
-                <Button href="https://github.com/Quofite/SimpleWebDev/" content="Github" color="black" icon="github" target="_blank" />
+                <Button href="https://github.com/Quofite/SimpleWebDev/" content="GitHub" color="black" icon="github" target="_blank" />
             </Menu.Item>
         </Container>
     </Menu>
