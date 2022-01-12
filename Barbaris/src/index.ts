@@ -35,7 +35,7 @@ app.on("ready", () => {
         win.setIgnoreMouseEvents(...args)
     })*/
 
-    //mainWindow.removeMenu();
+    mainWindow.removeMenu();
 
     mainWindow.webContents.openDevTools();
 

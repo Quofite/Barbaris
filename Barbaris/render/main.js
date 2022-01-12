@@ -3,6 +3,8 @@ const {
     ipcRenderer 
 } = require("electron");
 
+const mustache = require("mustache");
+
 
 /* 
 
@@ -112,26 +114,34 @@ ipcRenderer.on("got-directory-for-new", (e, data) => {
 	        throw error;
 	});
 
-    showProjs();
+    showProjects();
 });
 
 // ------------------------------------------------ загрузка проектов из памяти
-function showProjs(){
+function showProjects(){
     const fs = require("fs");
-    var parser = require('csv-parser');
+    //var parser = require('csv-parser');
     var mainBlock = document.getElementById("mainBlock");
     
-    while(mainBlock.children.length > 1){
+    while (mainBlock.children.length > 1)
         mainBlock.removeChild(mainBlock.lastChild);
-    }
 
-    let projects = JSON.parse(require("fs").readFileSync("projects.json", "utf8"));
-    
-    projects.forEach((item, i, array) => {
-        var element = document.createElement("div");
-        element.setAttribute("class", "card");
+    let projects = JSON.parse(fs.readFileSync("projects.json", "utf8"));
+    projects.forEach((project, i, array) => {
+        /*var element = document.createElement("div");
+        element.setAttribute("class", "card");*/
 
-        var header = document.createElement("header");
+        document.getElementById("mainBlock").innerHTML = mustache.render(
+            fs.readFileSync("render/templates/project.html", "utf-8"), 
+            { 
+                name: project.name,
+                path: project.path,
+                description: project.description
+            }
+        );
+        //document.getElementById("mainBlock").innerHTML = rendered;
+
+        /*var header = document.createElement("header");
         var projName = document.createTextNode(item.name);
         header.appendChild(projName);
         var path = document.createElement("span");
@@ -176,13 +186,13 @@ function showProjs(){
         delIcon.setAttribute("class", "bi bi-folder-minus");
         deleteProjBtn.appendChild(delIcon);
         var infoText3 = document.createTextNode("Удалить проект");
-        deleteProjBtn.appendChild(infoText3);
+        deleteProjBtn.appendChild(infoText3);*/
 
-        openProjFolderBtn.addEventListener("click", (event) => {
+        document.getElementById("openProjectFolder").addEventListener("click", (event) => {
             require("child_process").exec(`start "" "` + event.target.dataset.folder + `"`);
         });
 
-        openProjIdeBtn.addEventListener("click", (event) => {
+        document.getElementById("openProjectIDE").addEventListener("click", (event) => {
             var exec = require("child_process").execFile;
             
             exec(JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).ide, [event.target.dataset.folder], function(err, data) {  
@@ -210,7 +220,7 @@ function showProjs(){
             }
         });
 
-        deleteProjBtn.addEventListener("click", (event) => {
+        document.getElementById("deleteProject").addEventListener("click", (event) => {
             projects.splice(event.target.dataset.folder, 1);
 
             require("fs").writeFile("projects.json", JSON.stringify(projects), (error) => {
@@ -218,13 +228,13 @@ function showProjs(){
                     throw error;
             });
 
-            showProjs();
+            showProjects();
         });
 
-        footer.appendChild(openProjFolderBtn);
+        /*footer.appendChild(openProjFolderBtn);
         footer.appendChild(openProjIdeBtn);
         footer.appendChild(deleteProjBtn);
         element.appendChild(footer);
-        mainBlock.appendChild(element);
+        mainBlock.appendChild(element);*/
     });
 }

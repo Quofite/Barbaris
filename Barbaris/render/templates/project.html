@@ -1,0 +1,26 @@
+<div class="card">
+	<header>
+		{{ name }}<span class="grey">{{ path }}</span>
+   	</header>
+
+	<content>
+		{{ description }}
+   	</content>
+
+   	<footer>
+		<a href="#" id="openProjectFolder" data-folder="{{ path }}">
+			<i class="bi bi-folder-symlink"></i>
+			Открыть папку проекта
+		</a>
+
+		<a href="#" id="openProjectIDE" data-folder="{{ path }}">
+			<i class="bi bi-box-arrow-up-left"></i>
+			Открыть проект в IDE
+		</a>
+
+		<a href="#" id="deleteProject" data-folder="{{ path }}">
+			<i class="bi bi-folder-x"></i>
+			Удалить проект
+		</a>
+   	</footer>
+</div>

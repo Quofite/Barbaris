@@ -16,14 +16,14 @@ electron_1.app.on("ready", function () {
             contextIsolation: false,
             nodeIntegration: true
         },
-        titleBarStyle: 'hidden'
+        titleBarStyle: "hidden"
     });
     mainWindow.loadURL(path.join(__dirname, "../render/main.html"));
     /*ipcMain.on('set-ignore-mouse-events', (event, ...args: [boolean]) => {
         const win = BrowserWindow.fromWebContents(event.sender)
         win.setIgnoreMouseEvents(...args)
     })*/
-    //mainWindow.removeMenu();
+    mainWindow.removeMenu();
     mainWindow.webContents.openDevTools();
     mainWindow.on("minimize", function (event) {
         event.preventDefault();
