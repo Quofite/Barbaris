@@ -21,7 +21,7 @@
     		<hr>
 		</div>
 		<div id="content">
-			<b id="workDir">Рабочая директоия = ${path}</b>
+			<b id="workDir">Рабочая директоия = ${cookie['path'].getValue().toString()}</b>
 			<jsp:include page="mainInfo.jsp"></jsp:include>
 			<jsp:include page="dbInfo.jsp"></jsp:include>
 			<jsp:include page="settings.jsp"></jsp:include>
@@ -29,6 +29,7 @@
 	</body>
 	
 	<script>
+		// переключение стилей кнопок
 		document.querySelector("#mainBtn").addEventListener("click", () => {
 			document.querySelector("#dbInfoContent").setAttribute("hidden", "true");
 			document.querySelector("#settingsContent").setAttribute("hidden", "true");
@@ -68,6 +69,7 @@
 			document.querySelector("#settingsBtn").setAttribute("class", "nav-link active");
 		});
 		
+		// установка рабочей директории
 		let workingDirFullText = document.getElementById("workDir").textContent;
 		let splitted = workingDirFullText.split(" ");
 		let workingDir = splitted[splitted.length - 1];
