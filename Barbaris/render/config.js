@@ -22,7 +22,7 @@ document.querySelector("#addProgram").addEventListener("click", () => {
 	}
 
 	programs[0] = {
-		"path": (document.getElementById("idePath").files.length <= 0) ? (!programs[0]) ? "" : programs[0].path : document.getElementById("idePath").files.length <= 0,
+		"path": (document.getElementById("idePath").files.length <= 0) ? (!programs[0]) ? "" : programs[0].path : document.getElementById("idePath").files[0].path,
 		"name": "IDE"
 	}
 
@@ -46,5 +46,5 @@ document.querySelector("#addProgram").addEventListener("click", () => {
 			throw error;
 	});
 
-	//ipcRenderer.send("saved");
+	ipcRenderer.send("saved");
 });
