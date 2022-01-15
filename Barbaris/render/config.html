@@ -67,20 +67,31 @@
 
 
         <div class="container-fluid">
-            <form class="row g-3">
-                <div class="col-md-6">
-                    <label for="addProgramName" class="form-label">Название программы</label>
-                    <input type="text" class="form-control" id="addProgramName">
+            <form>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label for="idePath" class="form-label">Путь к IDE</label>
+                        <input type="file" class="form-control" id="idePath" accept=".exe,.jar">
+                    </div>
                 </div>
-    
-                <div class="col-md-6">
-                    <label for="addProgramIcon" class="form-label">Иконка программы</label>
-                    <input type="file" class="form-control" id="addProgramIcon" accept=".ico,.png,.jpeg,.jpg,.gif">
-                </div>
-    
-                <div class="col-12">
-                    <label for="addProgramPath" class="form-label">Путь к программе</label>
-                    <input type="file" class="form-control" id="addProgramPath" accept=".exe,.jar">
+
+                <hr>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="addProgramName" class="form-label">Название программы</label>
+                        <input type="text" class="form-control" id="addProgramName">
+                    </div>
+        
+                    <div class="col-md-6">
+                        <label for="addProgramIcon" class="form-label">Иконка программы</label>
+                        <input type="file" class="form-control" id="addProgramIcon" accept=".ico,.png,.jpeg,.jpg,.gif">
+                    </div>
+        
+                    <div class="col-12">
+                        <label for="addProgramPath" class="form-label">Путь к программе</label>
+                        <input type="file" class="form-control" id="addProgramPath" accept=".exe,.jar">
+                    </div>
                 </div>
     
                 <div class="primary fluid button" id="addProgram">

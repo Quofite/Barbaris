@@ -247,3 +247,7 @@ input[type="file"]:focus {
 .cards .card:not(:first-child) {
     margin-top: .6em;
 }
+
+#programButton img {
+    height: 32px;
+}
