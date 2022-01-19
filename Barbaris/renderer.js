@@ -179,7 +179,7 @@ function showProjs(){
                     });
                 }
 
-                if(JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).backuper === "Backuper.exe"){
+                /*if(JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).backuper === "Backuper.exe"){
                     exec(pathToExecFile + JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).ggc, [event.target.dataset.folder], function(err, data) {  
                         console.log(err)                    
                     });
@@ -188,7 +188,7 @@ function showProjs(){
                     exec(JSON.parse(require("fs").readFileSync("pathes.json", "utf8")).backuper, [event.target.dataset.folder], function(err, data) {  
                         console.log(err)                    
                     });
-                }
+                } */
             });
 
             deleteProjBtn.addEventListener("click", (event) => {

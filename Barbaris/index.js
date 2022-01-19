@@ -31,9 +31,9 @@ app.on("ready", () => {
         slashes: true
     }));
 
-    //mainWindow.removeMenu();
+    mainWindow.removeMenu();
 
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 
     
     mainWindow.on("minimize", (event) => {
@@ -122,7 +122,7 @@ ipcMain.on("openConfig", (e) => {
 
     configWindow.removeMenu();
 
-    configWindow.webContents.openDevTools();
+    //configWindow.webContents.openDevTools();
 });
 
 ipcMain.on("saved", (e) => {

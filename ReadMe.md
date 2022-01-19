@@ -14,7 +14,7 @@ Barbaris - это сборка приложений для упрощения р
 ### Barbaris Launcher
 ![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat-square&logo=javascript&logoColor=white&color=5194f0)
 ![](https://img.shields.io/badge/Framework-Electron.js-informational?style=flat-square&logo=electron&logoColor=white&color=5194f0)<br>
-![barbaris-main](https://sun9-66.userapi.com/impg/yPGqjiMseQrEPuGr7dwdGFZRNxNhuMKmRq96wA/Xel0w1C3LnM.jpg?size=1382x787&quality=96&sign=5c9a949322a36983070deb939d8b6dc4&type=album)<br>
+![barbaris-main](https://sun9-39.userapi.com/impg/q75bUO3yTIf4iwYekIgkPW1LLVAbD3coNN5HEQ/lft92Mnx3Yc.jpg?size=1380x639&quality=96&sign=42fe9190f6fa62101539591e92551d4d&type=album)<br>
 Прошу любить и жаловать - лаунчер!<br>
 Возможно, он не самый красивый и интуитивно понятный, но зато какой функциональный.<br>
 
@@ -74,6 +74,19 @@ Barbaris - это сборка приложений для упрощения р
 а на выходе вместе с ними получаешь их .ico варианты.
 
 ![explorer](https://sun9-45.userapi.com/impg/iJUppd27J0V1cIiGcZp-EzfNMEYE43ApELcV3A/hDEBFIOhGas.jpg?size=619x374&quality=96&sign=7e2749ffd479c6dbc968b3e894a860d3&type=album, "вот эта папка") Сюда, не в корневую папку
+
+<hr>
+
+#### Планы по разработке
+В Версиях Barbaris 2.0 и выше мы планируем:
+- создать Barbaris CMS (учитывая, что клиент уже есть)
+- создать СУБД BarbarisSQL
+- создать Barbaris IDE
+- возможно поменять концепцию лаунчера(так захотел, по крайней мере, дизайнер)
+- создать маленькие инструменты разработчика на сайте - JSON конвертор, SQL валидатор и конвертор C++ -> Assebmly
+- улучшить работу и функционал бекапера
+- улучшить существующий конвертор изображений - создать более удобный GUI(привет, адепты Arch), добавить возможность конвертирования разных форматов в разные<br>
+![explorer](https://sun9-7.userapi.com/impg/zLEmCymoWFQlRvkpPcIl0SO25OIaFdkRSo5hWA/BV-7P2IKvvc.jpg?size=1652x924&quality=96&sign=f0d0e3c03b84dd6b05e6aaad471a9c7f&type=album)
 
 <hr>
 
