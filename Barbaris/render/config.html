@@ -6,37 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Конфигуратор путей</title>
 
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     
-    <link href="./style.css" rel="stylesheet" type="text/css" />
+    <link href="styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="container-fluid">
         <div class="mb-3">
             <label for="idePathField" class="form-label">Путь к IDE</label>
-            <input type="text" class="form-control" id="idePathField">
+            <input type="text" class="form-control" id="idePathField" placeholder="C:\Programs\IDE">
         </div>
 
         <hr>
 
         <div class="mb-3">
             <label for="gitPathField" class="form-label">Путь к Git Client</label>
-            <input type="text" class="form-control" id="gitPathField">
+            <input type="text" class="form-control" id="gitPathField" placeholder="C:\Programs\Git Client">
         </div>
 
         <hr>
 
         <div class="mb-3">
             <label for="converterPathField" class="form-label">Путь к Конвертору</label>
-            <input type="text" class="form-control" id="converterPathField">
+            <input type="text" class="form-control" id="converterPathField" placeholder="C:\Programs\Converter">
         </div>
 
         <hr>
 
         <div class="mb-3">
             <label for="backuperPathField" class="form-label">Путь к Бекаперу</label>
-            <input type="text" class="form-control" id="backuperPathField">
+            <input type="text" class="form-control" id="backuperPathField" placeholder="C:\Programs\Backuper">
         </div>
 
         <div class="primary fluid button" id="save">
@@ -45,16 +45,16 @@
         </div>
     </div>
 
-    <script src="./confrenderer.js"></script>
+    <script src="./config.js"></script>
 
     <script>
         let pathesJsonContent = require("fs").readFileSync("pathes.json", "utf8");
         let parsed = JSON.parse(pathesJsonContent);
 
-        document.getElementById("idePathField").value = parsed.ide;
-        document.getElementById("gitPathField").value = parsed.ggc;
-        document.getElementById("converterPathField").value = parsed.convertor;
-        document.getElementById("backuperPathField").value = parsed.backuper;
+        document.getElementById("idePathField").value = parsed.ide ?? "";
+        document.getElementById("gitPathField").value = parsed.ggc ?? "";
+        document.getElementById("converterPathField").value = parsed.convertor ?? "";
+        document.getElementById("backuperPathField").value = parsed.backuper ?? "";
     </script>
 </body>
 </html>

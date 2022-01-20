@@ -1,4 +1,11 @@
-const { ipcRenderer } = require("electron");
+const { 
+    ipcRenderer 
+} = require("electron");
+
+ipcRenderer.on("accentColor", (event, accentColor) => {
+    for (let element of document.querySelectorAll(".primary"))
+        element.style.background = "#" + accentColor ?? "#0ea5e9";
+})
 
 document.querySelector("#save").addEventListener("click", () => {
     let idePath = document.getElementById("idePathField").value;

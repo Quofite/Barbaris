@@ -1,13 +1,7 @@
 /* Рендер  главного окна*/
-const { ipcRenderer } = require("electron");
-
-
-/* 
-
-ЛЕХА, РАДИ ВСЕГО СВЯТОГО - НЕ ЛЕЗЬ СЮДА
-
-*/
-
+const { 
+    ipcRenderer
+} = require("electron");
 
 var dirToAcarFile = __dirname;
 var parsedPath = dirToAcarFile.split("\\");
@@ -15,6 +9,11 @@ var pathToExecFile = "";
 for (let j = 0; j < parsedPath.length - 2; j++) {
     pathToExecFile += parsedPath[j] + "\\";
 }
+
+ipcRenderer.on("accentColor", (event, accentColor) => {
+    for (let element of document.querySelectorAll(".primary"))
+        element.style.background = "#" + accentColor ?? "#0ea5e9";
+})
 
 // --------------------------------------------------------------Кнопки слева
 // Открыть IDE

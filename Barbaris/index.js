@@ -5,9 +5,11 @@ const {
     BrowserWindow,
     Tray,
     Menu,
-    ipcMain
+    ipcMain,
+    webContents,
+    systemPreferences,
 } = require("electron");
-const { electron } = require("process");
+const process = require("os");
 
 // Главное окно
 var mainWindow;
@@ -16,27 +18,35 @@ app.on("ready", () => {
         width: 1400,
         height: 800,
         title: "Barbaris",
-        icon: "Barbaris.ico",
+        icon: "barbaris.ico",
         minWidth: 800,
         minHeight: 450,
-        webPreferences:{
+        paintWhenInitiallyHidden: true,
+        //autoHideMenuBar: true,
+        webPreferences: {
             contextIsolation: false,
             nodeIntegration: true
         }
     });
 
-    mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, "index.html"),
-        protocol: "file",
-        slashes: true
-    }));
+    mainWindow.loadURL(__dirname + "/render/index.html");
+
+    mainWindow.on("ready-to-show", () => {
+        mainWindow.webContents.send("accentColor", systemPreferences.getAccentColor());
+    });
+
+    //mainWindow.ready-to-show(() => {
+    //    mainWindow.webContents.send("accentColor", systemPreferences.getAccentColor());
+    //})
 
     mainWindow.removeMenu();
 
     //mainWindow.webContents.openDevTools();
 
-    
     mainWindow.on("minimize", (event) => {
+        if (process.platform == "linux")
+            return true;
+
         event.preventDefault();
 
         newTray();
@@ -45,7 +55,10 @@ app.on("ready", () => {
     });
 
     mainWindow.on("close", (event) => { 
-        if (!app.isQuiting){
+        if (process.platform == "linux")
+            return true;
+        
+        if (!app.isQuiting) {
             event.preventDefault();
 
             newTray();
@@ -58,15 +71,15 @@ app.on("ready", () => {
     
     ipcMain.handle("dark-mode:toggle", () => {
         if (nativeTheme.shouldUseDarkColors)
-        	nativeTheme.themeSource = "light"
+        	nativeTheme.themeSource = "light";
         else
-          	nativeTheme.themeSource = "dark"
+          	nativeTheme.themeSource = "dark";
 
-        return nativeTheme.shouldUseDarkColors
+        return nativeTheme.shouldUseDarkColors;
     })
     
     ipcMain.handle("dark-mode:system", () => {
-    	nativeTheme.themeSource = "system"
+    	nativeTheme.themeSource = "system";
 	})
 });
 
@@ -108,9 +121,9 @@ var configWindow;
 ipcMain.on("openConfig", (e) => {
     configWindow = new BrowserWindow({
         width: 700,
-        height: 500,
+        height: 560,
         title: "Barbaris",
-        icon: "Barbaris.ico",
+        icon: "barbaris.ico",
         // resizable: false,
         webPreferences:{
             contextIsolation: false,
@@ -118,7 +131,11 @@ ipcMain.on("openConfig", (e) => {
         }
     });
 
-    configWindow.loadFile("config.html");
+    configWindow.on("ready-to-show", () => {
+        configWindow.webContents.send("accentColor", systemPreferences.getAccentColor());
+    });
+
+    configWindow.loadFile(__dirname + "/render/config.html");
 
     configWindow.removeMenu();
 
