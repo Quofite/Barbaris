@@ -93,10 +93,8 @@ Barbaris - это сборка приложений для упрощения р
 #### Заключение
 Если у Вас есть вопросы по работе приложений или если Вы нашли какие-либо ошибки, то пишите разработчикам:
 - https://vk.com/gleb.nikitin1
-- https://vk.com/doogls
 
 ReadMe по сайту ищите в соответствующей папке в GitHub-репозитории
 
 #### Другие полезные ссылки:
 - https://github.com/Quofite/Barbaris
-- http://barbaris.novostroi.org
